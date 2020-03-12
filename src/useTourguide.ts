@@ -12,7 +12,7 @@ export default function useTourguide() {
     return anchorEls[curPos];
   }, [anchorEls, curPos]);
 
-  const handleRef = useCallback((node: HTMLElement) => {
+  const handleRef = useCallback((node: HTMLElement | null) => {
     if (node !== null && node.dataset.tourguidePosition) {
       setAnchorEls(prevEls => {
         const anchors = [...prevEls];
