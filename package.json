@@ -12,8 +12,23 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@types/react": "^16.9.23",
+    "@types/styled-components": "^5.0.1",
+    "@typescript-eslint/eslint-plugin": "2.x",
+    "@typescript-eslint/parser": "2.x",
+    "babel-eslint": "10.x",
+    "eslint": "6.x",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-react-app": "^5.2.0",
+    "eslint-plugin-flowtype": "4.x",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-react": "7.x",
+    "eslint-plugin-react-hooks": "2.x",
     "microbundle": "^0.11.0",
-    "react": "^16.8.0"
+    "prettier": "^1.19.1",
+    "react": "^16.8.0",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "@popperjs/core": "^2.1.0",
