@@ -3,7 +3,6 @@ import useTourguide from './useTourguide';
 import Tooltip from './Tooltip';
 import Spotlight from './Spotlight';
 import styled from 'styled-components';
-import './App.css';
 
 const Card = styled.div({
   boxShadow:
@@ -27,7 +26,13 @@ function App() {
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <div>
           <h2 {...getAnchorElProps(1)}>Some cool subtitle 2</h2>
           <Card {...getAnchorElProps(0)}>Some random card with content</Card>
