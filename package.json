@@ -13,7 +13,11 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
     "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
     "@types/styled-components": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "2.x",
     "@typescript-eslint/parser": "2.x",
@@ -34,11 +38,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@babel/core": "^7.8.7",
-    "@babel/preset-env": "^7.8.7",
-    "@babel/preset-react": "^7.8.3",
     "@popperjs/core": "^2.1.0",
-    "@types/react-dom": "^16.9.5",
     "react-spring": "^8.0.27",
     "styled-components": "^5.0.1"
   }
