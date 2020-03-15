@@ -1,9 +1,7 @@
 import React from 'react';
-import useTourguide from './useTourguide';
-import Tooltip from './Tooltip';
-import Spotlight from './Spotlight';
+import useTourguide from '../src/useTourguide';
 import styled from 'styled-components';
-import Tourguide from './Tourguide';
+import Tourguide from '../src/Tourguide';
 
 const Card = styled.div({
   boxShadow:
@@ -13,10 +11,11 @@ const Card = styled.div({
   padding: '1rem',
 });
 
+const messages = ['hello1', 'world2', 'peace3'];
+
 function App() {
   const {
     show,
-    anchorEl,
     curPos,
     anchorEls,
     getAnchorElProps,
@@ -47,27 +46,13 @@ function App() {
           prev
         </button>
       </div>
-      <Tourguide animated show={show} curPos={curPos} anchorEls={anchorEls} />
-      {/* {anchorEls.map((el, index) => (
-        <Spotlight
-          key={`anchorEl-child-${index}`}
-          show={show}
-          anchorEl={el}
-          pos={Number(el.dataset.tourguidePosition)}
-          curPos={curPos}
-          animated
-        />
-      ))}
-      {anchorEls.map((el, index) => (
-        <Tooltip
-          key={`anchorEl-tooltip-child-${index}`}
-          show={show}
-          anchorEl={el}
-          pos={Number(el.dataset.tourguidePosition)}
-          curPos={curPos}
-          animated
-        />
-      ))} */}
+      <Tourguide
+        animated
+        show={show}
+        curPos={curPos}
+        anchorEls={anchorEls}
+        tooltip={<Card>{messages[curPos]}</Card>}
+      />
     </>
   );
 }

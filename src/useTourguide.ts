@@ -4,7 +4,6 @@ export default function useTourguide() {
   const [anchorEls, setAnchorEls] = useState<HTMLElement[]>([]);
   const [show, setShow] = useState(false);
   const [curPos, setCurPos] = useState(0);
-  const curAnchorEl = anchorEls[curPos];
 
   const handleRef = useCallback((node: HTMLElement | null) => {
     if (node !== null && node.dataset.tourguidePosition) {
@@ -37,7 +36,6 @@ export default function useTourguide() {
     show,
     next,
     prev,
-    anchorEl: curAnchorEl,
     anchorEls,
     curPos,
     getAnchorElProps,

@@ -59,6 +59,8 @@ export default function usePopper(props: usePopperProps) {
     return () => {
       // clean up on anchor change if not animated
       if (!animated) {
+        console.log('destroyed');
+
         destroy();
       }
     };
