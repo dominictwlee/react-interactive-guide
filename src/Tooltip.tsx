@@ -38,6 +38,7 @@ export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
     show,
     popperOptions,
     ref,
+    animated,
   });
 
   const scaleAnim = useSpring({

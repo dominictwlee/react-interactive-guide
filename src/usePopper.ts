@@ -55,7 +55,14 @@ export default function usePopper(props: usePopperProps) {
   // Recreate on popper change
   useLayoutEffect(() => {
     create();
-  }, [create]);
+
+    return () => {
+      // clean up on anchor change if not animated
+      if (!animated) {
+        destroy();
+      }
+    };
+  }, [create, destroy, animated]);
 
   // Clean up on unmount
   useEffect(() => {
@@ -63,13 +70,6 @@ export default function usePopper(props: usePopperProps) {
       destroy();
     };
   }, [destroy]);
-
-  // destroy on change anchorEl if not animated
-  useEffect(() => {
-    if (!animated && (!show || anchorEl)) {
-      destroy();
-    }
-  }, [show, animated, destroy, anchorEl]);
 
   return {
     selfRef,

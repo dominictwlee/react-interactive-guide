@@ -55,7 +55,7 @@ function App() {
           pos={Number(el.dataset.tourguidePosition)}
           curPos={curPos}
         />
-      ))}
+      ))} */}
       {anchorEls.map((el, index) => (
         <Tooltip
           key={`anchorEl-tooltip-child-${index}`}
@@ -64,7 +64,7 @@ function App() {
           pos={Number(el.dataset.tourguidePosition)}
           curPos={curPos}
         />
-      ))} */}
+      ))}
     </>
   );
 }
