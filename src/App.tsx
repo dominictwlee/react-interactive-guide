@@ -46,16 +46,16 @@ function App() {
           prev
         </button>
       </div>
-      <Spotlight show={show} anchorEl={anchorEl} curPos={curPos} pos={0} />
-      {/* {anchorEls.map((el, index) => (
+      {anchorEls.map((el, index) => (
         <Spotlight
           key={`anchorEl-child-${index}`}
           show={show}
           anchorEl={el}
           pos={Number(el.dataset.tourguidePosition)}
           curPos={curPos}
+          animated
         />
-      ))} */}
+      ))}
       {anchorEls.map((el, index) => (
         <Tooltip
           key={`anchorEl-tooltip-child-${index}`}
@@ -63,6 +63,7 @@ function App() {
           anchorEl={el}
           pos={Number(el.dataset.tourguidePosition)}
           curPos={curPos}
+          animated
         />
       ))}
     </>

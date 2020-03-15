@@ -51,6 +51,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
     show,
     popperOptions,
     ref,
+    animated,
   });
 
   const opacityAnim = useSpring({
