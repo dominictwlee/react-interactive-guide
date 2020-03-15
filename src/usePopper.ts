@@ -1,4 +1,11 @@
-import { useRef, useCallback, useLayoutEffect, useEffect, useState, Ref } from 'react';
+import {
+  useRef,
+  useCallback,
+  useLayoutEffect,
+  useEffect,
+  useState,
+  Ref,
+} from 'react';
 import { createPopper, Options, Instance } from '@popperjs/core';
 import { useForkRef } from './refUtils';
 
@@ -7,10 +14,11 @@ type usePopperProps = {
   popperOptions: Partial<Options> | null;
   ref: Ref<any>;
   show: boolean;
+  animated?: boolean;
 };
 
 export default function usePopper(props: usePopperProps) {
-  const { anchorEl, popperOptions, ref, show } = props;
+  const { anchorEl, popperOptions, ref, show, animated } = props;
   const [idle, setIdle] = useState(true);
   const tooltipRef = useRef<HTMLElement | null>(null);
   const selfRef = useForkRef(tooltipRef, ref);
@@ -21,7 +29,11 @@ export default function usePopper(props: usePopperProps) {
       return;
     }
 
-    popperInstanceRef.current = createPopper(anchorEl, tooltipRef.current, popperOptions);
+    popperInstanceRef.current = createPopper(
+      anchorEl,
+      tooltipRef.current,
+      popperOptions
+    );
   }, [anchorEl, popperOptions, show]);
 
   const destroy = useCallback(() => {
@@ -51,6 +63,13 @@ export default function usePopper(props: usePopperProps) {
       destroy();
     };
   }, [destroy]);
+
+  // destroy on change anchorEl if not animated
+  useEffect(() => {
+    if (!animated && (!show || anchorEl)) {
+      destroy();
+    }
+  }, [show, animated, destroy, anchorEl]);
 
   return {
     selfRef,

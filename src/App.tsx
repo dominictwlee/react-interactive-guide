@@ -46,7 +46,8 @@ function App() {
           prev
         </button>
       </div>
-      {anchorEls.map((el, index) => (
+      <Spotlight show={show} anchorEl={anchorEl} curPos={curPos} pos={0} />
+      {/* {anchorEls.map((el, index) => (
         <Spotlight
           key={`anchorEl-child-${index}`}
           show={show}
@@ -63,7 +64,7 @@ function App() {
           pos={Number(el.dataset.tourguidePosition)}
           curPos={curPos}
         />
-      ))}
+      ))} */}
     </>
   );
 }
