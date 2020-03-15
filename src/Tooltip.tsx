@@ -64,7 +64,11 @@ export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
 
   return (
     <div ref={selfRef}>
-      {children ? children : <Card style={scaleAnim}>Some instructions</Card>}
+      {children ? (
+        <Animated.div style={scaleAnim}>{children}</Animated.div>
+      ) : (
+        <Card style={scaleAnim}>Some instructions</Card>
+      )}
     </div>
   );
 });

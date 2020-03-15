@@ -3,6 +3,7 @@ import useTourguide from './useTourguide';
 import Tooltip from './Tooltip';
 import Spotlight from './Spotlight';
 import styled from 'styled-components';
+import Tourguide from './Tourguide';
 
 const Card = styled.div({
   boxShadow:
@@ -46,7 +47,8 @@ function App() {
           prev
         </button>
       </div>
-      {anchorEls.map((el, index) => (
+      <Tourguide animated show={show} curPos={curPos} anchorEls={anchorEls} />
+      {/* {anchorEls.map((el, index) => (
         <Spotlight
           key={`anchorEl-child-${index}`}
           show={show}
@@ -65,7 +67,7 @@ function App() {
           curPos={curPos}
           animated
         />
-      ))}
+      ))} */}
     </>
   );
 }
