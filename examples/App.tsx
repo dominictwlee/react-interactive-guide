@@ -11,7 +11,7 @@ const Card = styled.div({
   padding: '1rem',
 });
 
-const messages = ['hello1', 'world2', 'peace3'];
+const messages = ['hello1', 'world2', 'hello3'];
 
 function App() {
   const {
@@ -51,7 +51,8 @@ function App() {
         show={show}
         curPos={curPos}
         anchorEls={anchorEls}
-        tooltip={<Card>{messages[curPos]}</Card>}
+        tooltip={Card}
+        content={messages}
       />
     </>
   );

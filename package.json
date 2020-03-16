@@ -1,14 +1,32 @@
 {
   "name": "react-tourguide",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "Tour guide for your react app",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel examples/index.html"
+    "dev": "parcel examples/index.html -d build"
   },
-  "author": "",
+  "keywords": [
+    "react",
+    "react-component",
+    "hooks",
+    "react-hooks",
+    "tour",
+    "guide",
+    "tutorial"
+  ],
+  "author": "Dominic Lee",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominictwlee/react-tourguide.git"
+  },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "react": "^16.8.0"
   },
@@ -36,6 +54,7 @@
     "prettier": "^1.19.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
   },
   "dependencies": {

@@ -14,7 +14,7 @@ const SpotlightShadow = styled.div<{ dimensions: [string, string] }>(
 
 const AnimatedShadow = animated(SpotlightShadow);
 
-type SpotlightProps = {
+export type SpotlightProps = {
   anchorEl: any;
   show: boolean;
   curPos: number;

@@ -68,9 +68,7 @@ export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
         <Animated.div style={animated ? scaleAnim : undefined}>
           {children}
         </Animated.div>
-      ) : (
-        <Card style={scaleAnim}>Some instructions</Card>
-      )}
+      ) : null}
     </div>
   );
 });

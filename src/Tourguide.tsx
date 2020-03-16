@@ -1,17 +1,30 @@
-import React, { ReactElement } from 'react';
+import React, {
+  ReactElement,
+  ComponentType,
+  ReactNode,
+  isValidElement,
+} from 'react';
 import Spotlight from './Spotlight';
 import Tooltip from './Tooltip';
 
-type TourguideProps = {
+export type TourguideProps = {
   animated?: boolean;
-  tooltip?: ReactElement;
+  tooltip?: JSX.Element[] | ReactElement | ComponentType;
   show: boolean;
   curPos: number;
   anchorEls: HTMLElement[];
+  content?: ReactNode[];
 };
 
 const Tourguide = (props: TourguideProps) => {
-  const { tooltip: Component, animated, anchorEls, curPos, show } = props;
+  const {
+    tooltip: Component,
+    animated,
+    anchorEls,
+    curPos,
+    show,
+    content,
+  } = props;
 
   const anchorEl = anchorEls[curPos];
 
@@ -45,14 +58,22 @@ const Tourguide = (props: TourguideProps) => {
             show={show}
             curPos={curPos}
           />
-          <Tooltip
-            key={`anchorEl-tooltip-${index}`}
-            show={show}
-            anchorEl={el}
-            pos={Number(el.dataset.tourguidePosition)}
-            curPos={curPos}
-            animated
-          />
+          {Component && (
+            <Tooltip
+              key={`anchorEl-tooltip-${index}`}
+              show={show}
+              anchorEl={el}
+              pos={Number(el.dataset.tourguidePosition)}
+              curPos={curPos}
+              animated
+            >
+              {Array.isArray(Component) || isValidElement(Component) ? (
+                Component
+              ) : (
+                <Component>{content && content[index]}</Component>
+              )}
+            </Tooltip>
+          )}
         </>
       ))}
     </>
