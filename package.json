@@ -12,7 +12,7 @@
     "build": "microbundle  -f es,cjs",
     "lint:fix": "eslint --fix 'src/**/*.{js,ts,tsx}'",
     "pretty": "prettier --write 'src/**/*.{js,ts,tsx}'",
-    "release": "yarn clean && yarn lint:fix && yarn pretty && yarn build && npm publish"
+    "release": "yarn clean && yarn lint:fix && yarn pretty && yarn build && yarn publish"
   },
   "keywords": [
     "react",
