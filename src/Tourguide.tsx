@@ -3,6 +3,7 @@ import React, {
   ComponentType,
   ReactNode,
   isValidElement,
+  Fragment,
 } from 'react';
 import Spotlight from './Spotlight';
 import Tooltip from './Tooltip';
@@ -49,9 +50,8 @@ const Tourguide = (props: TourguideProps) => {
   return (
     <>
       {anchorEls.map((el, index) => (
-        <>
+        <Fragment key={`tourguideEl-${index}`}>
           <Spotlight
-            key={`anchorEl-spotlight-${index}`}
             anchorEl={el}
             pos={Number(el.dataset.tourguidePosition)}
             animated
@@ -60,7 +60,6 @@ const Tourguide = (props: TourguideProps) => {
           />
           {Component && (
             <Tooltip
-              key={`anchorEl-tooltip-${index}`}
               show={show}
               anchorEl={el}
               pos={Number(el.dataset.tourguidePosition)}
@@ -76,7 +75,7 @@ const Tourguide = (props: TourguideProps) => {
               )}
             </Tooltip>
           )}
-        </>
+        </Fragment>
       ))}
     </>
   );
