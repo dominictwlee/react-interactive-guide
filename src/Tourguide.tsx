@@ -5,6 +5,7 @@ import React, {
   isValidElement,
   Fragment,
 } from 'react';
+import ReactDOM from 'react-dom';
 import Spotlight from './Spotlight';
 import Tooltip from './Tooltip';
 
@@ -15,6 +16,7 @@ export type TourguideProps = {
   curPos: number;
   anchorEls: HTMLElement[];
   content?: ReactNode[];
+  node: HTMLElement;
 };
 
 const Tourguide = (props: TourguideProps) => {
@@ -25,12 +27,13 @@ const Tourguide = (props: TourguideProps) => {
     curPos,
     show,
     content,
+    node,
   } = props;
 
   const anchorEl = anchorEls[curPos];
 
   if (!animated) {
-    return (
+    return ReactDOM.createPortal(
       <>
         <Spotlight
           anchorEl={anchorEl}
@@ -43,11 +46,12 @@ const Tourguide = (props: TourguideProps) => {
             {Component}
           </Tooltip>
         )}
-      </>
+      </>,
+      node
     );
   }
 
-  return (
+  return ReactDOM.createPortal(
     <>
       {anchorEls.map((el, index) => (
         <Fragment key={`tourguideEl-${index}`}>
@@ -77,7 +81,8 @@ const Tourguide = (props: TourguideProps) => {
           )}
         </Fragment>
       ))}
-    </>
+    </>,
+    node
   );
 };
 export default Tourguide;

@@ -13,6 +13,8 @@ const Card = styled.div({
 
 const messages = ['hello1', 'world2', 'hello3'];
 
+const node = document.getElementById('tourguide-root');
+
 function App() {
   const {
     show,
@@ -48,6 +50,7 @@ function App() {
       </div>
       <Tourguide
         animated
+        node={node}
         show={show}
         curPos={curPos}
         anchorEls={anchorEls}
