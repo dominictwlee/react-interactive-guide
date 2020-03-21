@@ -1,7 +1,7 @@
 {
   "name": "react-interactive-guide",
   "version": "0.0.1",
-  "description": "Tour guide for your react app",
+  "description": "Interactive tour guide for your react app",
   "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/index.module.js",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dominictwlee/react-tourguide.git"
+    "url": "git+https://github.com/dominictwlee/react-interactive-guide.git"
   },
   "files": [
     "dist"
