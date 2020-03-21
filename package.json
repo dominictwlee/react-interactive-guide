@@ -1,5 +1,5 @@
 {
-  "name": "react-tourguide",
+  "name": "react-interactive-guide",
   "version": "0.0.1",
   "description": "Tour guide for your react app",
   "source": "src/index.ts",
