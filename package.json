@@ -7,7 +7,11 @@
   "module": "dist/index.module.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel examples/index.html -d build"
+    "dev": "parcel examples/index.html -d build",
+    "clean": "rimraf dist",
+    "build": "microbundle  -f es,cjs",
+    "lint:fix": "eslint --fix 'src/**/*.{js,ts,tsx}'",
+    "pretty": "prettier --write 'src/**/*.{js,ts,tsx}'"
   },
   "keywords": [
     "react",
@@ -49,6 +53,8 @@
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "2.x",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "microbundle": "^0.11.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1",
@@ -61,5 +67,16 @@
     "@popperjs/core": "^2.1.0",
     "react-spring": "^8.0.27",
     "styled-components": "^5.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
