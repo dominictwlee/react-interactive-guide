@@ -51,8 +51,10 @@ function App() {
         show={show}
         curPos={curPos}
         anchorEls={anchorEls}
-        tooltip={Card}
-        content={messages}
+        tooltip={messages.map(message => (
+          <Card>{message}</Card>
+        ))}
+        // content={messages}
       />
     </>
   );

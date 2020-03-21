@@ -67,7 +67,9 @@ const Tourguide = (props: TourguideProps) => {
               curPos={curPos}
               animated
             >
-              {Array.isArray(Component) || isValidElement(Component) ? (
+              {Array.isArray(Component) ? (
+                Component[index]
+              ) : isValidElement(Component) ? (
                 Component
               ) : (
                 <Component>{content && content[index]}</Component>
