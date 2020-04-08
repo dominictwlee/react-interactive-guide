@@ -12,7 +12,7 @@ const SpotlightShadow = ({ dimensions, style = {} }: SpotlightShadowProps) => {
       style={{
         ...style,
         boxShadow:
-          '0px 0px 5px 5px rgba(0,0,0,0.5) inset, 0px 0px 0px 3000px rgba(0,0,0,0.5)',
+          '0px 0px 5px 5px rgba(52,56,102,0.5) inset, 0px 0px 0px 3000px rgba(52,56,102,0.5)',
         width: dimensions[0] + 30,
         height: dimensions[1] + 30,
       }}

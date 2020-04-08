@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useEffect, Ref } from 'react';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated as Animated } from 'react-spring';
 import SpotlightShadow from './SpotlightShadow';
 import usePopper from './usePopper';
 
-const AnimatedShadow = animated(SpotlightShadow);
+const AnimatedShadow = Animated(SpotlightShadow);
 
 export type SpotlightProps = {
   anchorEl: any;

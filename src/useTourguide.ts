@@ -15,22 +15,31 @@ export default function useTourguide() {
     }
   }, []);
 
-  const getAnchorElProps = (position: number) => ({
-    ref: handleRef,
-    'data-tourguide-position': position,
-  });
+  const getAnchorElProps = useCallback(
+    (position: number) => ({
+      ref: handleRef,
+      'data-tourguide-position': position,
+    }),
+    [handleRef]
+  );
 
-  const toggle = () => {
-    setShow(!show);
-  };
+  const toggle = useCallback(() => {
+    setShow(prevShow => !prevShow);
+  }, []);
 
-  const next = () => {
-    setCurPos(curPos + 1);
-  };
+  const next = useCallback(() => {
+    setCurPos(prevCurPos => prevCurPos + 1);
+  }, []);
 
-  const prev = () => {
-    setCurPos(curPos - 1);
-  };
+  const prev = useCallback(() => {
+    setCurPos(prevCurPos => (prevCurPos === 0 ? prevCurPos : prevCurPos - 1));
+  }, []);
+
+  const destroy = useCallback(() => {
+    setShow(false);
+    setAnchorEls([]);
+    setCurPos(0);
+  }, []);
 
   return {
     show,
@@ -43,5 +52,6 @@ export default function useTourguide() {
     setCurPos,
     toggle,
     handleRef,
+    destroy,
   };
 }

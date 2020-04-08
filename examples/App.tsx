@@ -41,12 +41,6 @@ function App() {
           <p {...getAnchorElProps(2)}>Some cool content 3</p>
         </div>
         <button onClick={toggle}>show</button>
-        <button disabled={curPos === anchorEls.length - 1} onClick={next}>
-          next
-        </button>
-        <button disabled={curPos === 0} onClick={prev}>
-          prev
-        </button>
       </div>
       <Tourguide
         animated
@@ -57,6 +51,22 @@ function App() {
         tooltip={messages.map(message => (
           <Card>{message}</Card>
         ))}
+        leftControl={
+          <button disabled={curPos === 0} onClick={prev}>
+            prev
+          </button>
+        }
+        rightControl={
+          <button disabled={curPos === anchorEls.length - 1} onClick={next}>
+            next
+          </button>
+        }
+        closeControl={
+          <button disabled={curPos === anchorEls.length - 1} onClick={next}>
+            Close
+          </button>
+        }
+
         // content={messages}
       />
     </>
