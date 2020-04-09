@@ -31,7 +31,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
           {
             name: 'offset',
             options: {
-              offset: [0, -(dimensions[1] + 15)],
+              offset: [0, -(dimensions[1] + 7.5)],
             },
           },
         ],

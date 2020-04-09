@@ -7,17 +7,16 @@ import React, {
 } from 'react';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
+import { useSpring } from 'react-spring';
+
 import Mask from './Mask';
 import Tooltip from './Tooltip';
 import Control from './Control';
-import { useSpring } from 'react-spring';
+import useGuide from './useGuide';
 
 export type TourguideProps = {
   animated?: boolean;
   tooltip?: JSX.Element[] | ReactElement | ComponentType;
-  show: boolean;
-  curPos: number;
-  anchorEls: HTMLElement[];
   content?: ReactNode[];
   node: HTMLElement;
   leftControl?: React.ReactElement;
@@ -33,16 +32,15 @@ const GuideContainer = styled.div({
 const Tourguide = (props: TourguideProps) => {
   const {
     tooltip: Component,
-    animated,
-    anchorEls,
-    curPos,
-    show,
+    animated = true,
     content,
     node,
     leftControl,
     rightControl,
     closeControl,
   } = props;
+
+  const { anchorEls, curPos, show } = useGuide();
 
   const anchorEl = anchorEls[curPos];
 

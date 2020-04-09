@@ -1,4 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
+
+export type UseTourguideProps = ReturnType<typeof useTourguide>;
 
 export default function useTourguide() {
   const [anchorEls, setAnchorEls] = useState<HTMLElement[]>([]);
@@ -27,6 +29,11 @@ export default function useTourguide() {
     setShow(prevShow => !prevShow);
   }, []);
 
+  const close = useCallback(() => {
+    setShow(false);
+    setCurPos(0);
+  }, []);
+
   const next = useCallback(() => {
     setCurPos(prevCurPos => prevCurPos + 1);
   }, []);
@@ -41,17 +48,32 @@ export default function useTourguide() {
     setCurPos(0);
   }, []);
 
-  return {
-    show,
-    next,
-    prev,
-    anchorEls,
-    curPos,
-    getAnchorElProps,
-    setShow,
-    setCurPos,
-    toggle,
-    handleRef,
-    reset,
-  };
+  return useMemo(
+    () => ({
+      show,
+      next,
+      prev,
+      anchorEls,
+      curPos,
+      getAnchorElProps,
+      setShow,
+      setCurPos,
+      toggle,
+      handleRef,
+      reset,
+      close,
+    }),
+    [
+      anchorEls,
+      curPos,
+      getAnchorElProps,
+      handleRef,
+      next,
+      prev,
+      reset,
+      show,
+      toggle,
+      close,
+    ]
+  );
 }

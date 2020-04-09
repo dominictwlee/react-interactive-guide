@@ -1,7 +1,7 @@
 import React from 'react';
-import useTourguide from '../src/useTourguide';
 import styled from 'styled-components';
 import Tourguide from '../src/Tourguide';
+import useGuide from '../src/useGuide';
 
 const Card = styled.div({
   boxShadow:
@@ -17,14 +17,14 @@ const node = document.getElementById('tourguide-root');
 
 function App() {
   const {
-    show,
     curPos,
     anchorEls,
     getAnchorElProps,
     next,
     prev,
     toggle,
-  } = useTourguide();
+    close,
+  } = useGuide();
 
   return (
     <>
@@ -45,9 +45,6 @@ function App() {
       <Tourguide
         animated
         node={node}
-        show={show}
-        curPos={curPos}
-        anchorEls={anchorEls}
         tooltip={messages.map(message => (
           <Card>{message}</Card>
         ))}
@@ -61,11 +58,7 @@ function App() {
             next
           </button>
         }
-        closeControl={
-          <button disabled={curPos === anchorEls.length - 1} onClick={next}>
-            Close
-          </button>
-        }
+        closeControl={<button onClick={close}>Close</button>}
 
         // content={messages}
       />
