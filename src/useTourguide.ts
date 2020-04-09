@@ -35,7 +35,7 @@ export default function useTourguide() {
     setCurPos(prevCurPos => (prevCurPos === 0 ? prevCurPos : prevCurPos - 1));
   }, []);
 
-  const destroy = useCallback(() => {
+  const reset = useCallback(() => {
     setShow(false);
     setAnchorEls([]);
     setCurPos(0);
@@ -52,6 +52,6 @@ export default function useTourguide() {
     setCurPos,
     toggle,
     handleRef,
-    destroy,
+    reset,
   };
 }
