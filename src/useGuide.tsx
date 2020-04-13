@@ -1,12 +1,21 @@
+import { useEffect } from 'react';
 import TourguideContext from './TourguideContext';
 import { useContext } from 'react';
 
 export default function useGuide() {
-  const guide = useContext(TourguideContext);
+  const guideContext = useContext(TourguideContext);
 
-  if (!guide) {
+  if (!guideContext) {
     throw new Error('useGuide must be used within TourguideProvider');
   }
 
-  return guide;
+  const { reset } = guideContext;
+
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, [reset]);
+
+  return guideContext;
 }
