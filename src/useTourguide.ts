@@ -35,8 +35,14 @@ export default function useTourguide() {
   }, []);
 
   const next = useCallback(() => {
-    setCurPos(prevCurPos => prevCurPos + 1);
-  }, []);
+    setCurPos(prevCurPos => {
+      if (prevCurPos >= anchorEls.length - 1) {
+        return prevCurPos;
+      }
+
+      return prevCurPos + 1;
+    });
+  }, [anchorEls.length]);
 
   const prev = useCallback(() => {
     setCurPos(prevCurPos => (prevCurPos === 0 ? prevCurPos : prevCurPos - 1));
