@@ -95,6 +95,7 @@ const Tourguide = (props: TourguideProps) => {
         justify="center"
         ref={measuredStepIndicatorRef}
         measuredWidth={stepIndicatorWidth}
+        style={opacityAnim}
       >
         <StepIndicator steps={anchorEls.length} curPos={curPos} />
       </Control>
