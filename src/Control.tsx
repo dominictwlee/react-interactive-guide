@@ -1,32 +1,55 @@
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 
-type Align = 'center' | 'top';
-type Justify = 'left' | 'right';
+type Align = 'center' | 'top' | 'bottom';
+type Justify = 'left' | 'right' | 'center';
 
 type ControlProps = {
   align: Align;
   justify: Justify;
+  measuredWidth?: number;
 };
 
-function alignPos(align: Align) {
-  switch (align) {
-    case 'center':
-      return '50vh';
-    case 'top':
-      return '2vw';
-    default:
-      return undefined;
+type Position = {
+  top?: string | number;
+  bottom?: string | number;
+  right?: string | number;
+  left?: string | number;
+};
+
+function getPosition(
+  justify: Justify,
+  align: Align,
+  measuredWidth?: number
+): Position {
+  const position: Position = {};
+
+  if (align === 'center') {
+    position.top = '50vh';
+  } else if (align === 'top') {
+    position.top = '2vw';
+  } else if (align === 'bottom') {
+    position.bottom = '7vh';
   }
+
+  if (justify === 'left') {
+    position.left = '2vw';
+  } else if (justify === 'right') {
+    position.right = '2vw';
+  } else if (justify === 'center') {
+    position.left = measuredWidth
+      ? `calc(50vw - ${measuredWidth / 2}px)`
+      : '50vw';
+  }
+
+  return position;
 }
 
 const Control = animated(
-  styled.div<ControlProps>(({ align, justify }) => ({
+  styled.div<ControlProps>(({ justify, align, measuredWidth }) => ({
     position: 'absolute',
-    top: alignPos(align),
-    left: justify === 'left' ? '2vw' : undefined,
-    right: justify === 'right' ? '2vw' : undefined,
     zIndex: 2600,
+    ...getPosition(justify, align, measuredWidth),
   }))
 );
 

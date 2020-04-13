@@ -4,6 +4,8 @@ import React, {
   ReactNode,
   isValidElement,
   Fragment,
+  useCallback,
+  useState,
 } from 'react';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
@@ -13,6 +15,7 @@ import Mask from './Mask';
 import Tooltip from './Tooltip';
 import Control from './Control';
 import useGuide from './useGuide';
+import StepIndicator from './StepIndicator';
 
 export type TourguideProps = {
   animated?: boolean;
@@ -40,7 +43,15 @@ const Tourguide = (props: TourguideProps) => {
     closeControl,
   } = props;
 
+  const [stepIndicatorWidth, setStepIndicatorWidth] = useState(0);
+
   const { anchorEls, curPos, show } = useGuide();
+
+  const measuredStepIndicatorRef = useCallback(node => {
+    if (node !== null) {
+      setStepIndicatorWidth(node.getBoundingClientRect().width);
+    }
+  }, []);
 
   const anchorEl = anchorEls[curPos];
 
@@ -79,6 +90,14 @@ const Tourguide = (props: TourguideProps) => {
           {closeControl}
         </Control>
       )}
+      <Control
+        align="bottom"
+        justify="center"
+        ref={measuredStepIndicatorRef}
+        measuredWidth={stepIndicatorWidth}
+      >
+        <StepIndicator steps={anchorEls.length} curPos={curPos} />
+      </Control>
       <GuideContainer>
         {anchorEls.map((el, index) => (
           <Fragment key={`tourguideEl-${index}`}>
