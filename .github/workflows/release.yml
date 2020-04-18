@@ -5,20 +5,21 @@ on:
       - master
 
 jobs:
-  # pre-build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
-  #     - run: yarn install --frozen-lockfile
-  #     - run: yarn lint
-  #     - run: yarn tsc
-  #     - run: yarn test
+  pre-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+      - run: yarn tsc
+      - run: yarn test
 
   publish-npm:
-    needs: check-build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: pre-build
     runs-on: ubuntu-latest
     steps:
       # check out repository code and setup node
