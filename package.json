@@ -6,10 +6,12 @@
   "main": "dist/index.js",
   "module": "dist/index.module.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"run tests\"",
     "dev": "parcel examples/index.html -d build",
     "clean": "rimraf dist",
     "build": "yarn clean && microbundle  -f es,cjs",
+    "lint": "eslint 'src/**/*.{js,ts,tsx}'",
+    "tsc": "tsc",
     "lint:fix": "eslint --fix 'src/**/*.{js,ts,tsx}'",
     "pretty": "prettier --write 'src/**/*.{js,ts,tsx}'",
     "release": "yarn lint:fix && yarn pretty && yarn build && yarn publish"
@@ -42,6 +44,8 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "@types/styled-components": "^5.0.1",
@@ -64,6 +68,7 @@
     "react": ">= 16.8.0",
     "react-dom": ">= 16.8.0",
     "rimraf": "^3.0.2",
+    "semantic-release": "^17.0.6",
     "typescript": "^3.8.3"
   },
   "dependencies": {
