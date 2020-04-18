@@ -9,7 +9,7 @@
     "test": "echo \"run tests\"",
     "dev": "parcel examples/index.html -d build",
     "clean": "rimraf dist",
-    "build": "yarn clean && microbundle  -f es,cjs",
+    "build": "microbundle  -f es,cjs",
     "lint": "eslint 'src/**/*.{js,ts,tsx}'",
     "tsc": "tsc",
     "lint:fix": "eslint --fix 'src/**/*.{js,ts,tsx}'",
