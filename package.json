@@ -1,6 +1,6 @@
 {
   "name": "react-interactive-guide",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Interactive tour guide for your react app",
   "source": "src/index.ts",
   "main": "dist/index.js",
