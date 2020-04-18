@@ -2,20 +2,29 @@ import { useState, useCallback, useMemo } from 'react';
 
 export type UseTourguideProps = ReturnType<typeof useTourguide>;
 
+type TourGuideStatus = 'idle' | 'initializing' | 'ready';
+
 export default function useTourguide() {
   const [anchorEls, setAnchorEls] = useState<HTMLElement[]>([]);
   const [show, setShow] = useState(false);
   const [curPos, setCurPos] = useState(0);
+  const [status, setStatus] = useState<TourGuideStatus>('idle');
 
-  const handleRef = useCallback((node: HTMLElement | null) => {
-    if (node !== null && node.dataset.tourguidePosition) {
-      setAnchorEls(prevEls => {
-        const anchors = [...prevEls];
-        anchors[Number(node.dataset.tourguidePosition)] = node;
-        return anchors;
-      });
-    }
-  }, []);
+  const handleRef = useCallback(
+    (node: HTMLElement | null) => {
+      if (node !== null && node.dataset.tourguidePosition) {
+        setAnchorEls(prevEls => {
+          const anchors = [...prevEls];
+          anchors[Number(node.dataset.tourguidePosition)] = node;
+          return anchors;
+        });
+        if (status === 'idle') {
+          setStatus('initializing');
+        }
+      }
+    },
+    [status]
+  );
 
   const getAnchorElProps = useCallback(
     (position: number) => ({
@@ -52,6 +61,7 @@ export default function useTourguide() {
     setShow(false);
     setAnchorEls([]);
     setCurPos(0);
+    setStatus('idle');
   }, []);
 
   return useMemo(
@@ -68,6 +78,8 @@ export default function useTourguide() {
       handleRef,
       reset,
       close,
+      setStatus,
+      status,
     }),
     [
       anchorEls,
@@ -80,6 +92,7 @@ export default function useTourguide() {
       show,
       toggle,
       close,
+      status,
     ]
   );
 }

@@ -6,6 +6,7 @@ import React, {
   Fragment,
   useCallback,
   useState,
+  useEffect,
 } from 'react';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
@@ -25,6 +26,7 @@ export type TourguideProps = {
   leftControl?: React.ReactElement;
   rightControl?: React.ReactElement;
   closeControl?: React.ReactElement;
+  precondition?: boolean;
 };
 
 const GuideContainer = styled.div({
@@ -36,6 +38,7 @@ const Tourguide = (props: TourguideProps) => {
   const {
     tooltip: Component,
     animated = true,
+    precondition = true,
     content,
     node,
     leftControl,
@@ -45,7 +48,7 @@ const Tourguide = (props: TourguideProps) => {
 
   const [stepIndicatorWidth, setStepIndicatorWidth] = useState(0);
 
-  const { anchorEls, curPos, show } = useGuide();
+  const { anchorEls, curPos, show, setStatus } = useGuide();
 
   const measuredStepIndicatorRef = useCallback(node => {
     if (node !== null) {
@@ -54,6 +57,12 @@ const Tourguide = (props: TourguideProps) => {
   }, []);
 
   const anchorEl = anchorEls[curPos];
+
+  useEffect(() => {
+    if (precondition && anchorEls.length) {
+      setStatus('ready');
+    }
+  }, [anchorEls.length, precondition, setStatus]);
 
   const opacityAnim = useSpring({
     opacity: show ? 1 : 0,
