@@ -6,7 +6,7 @@ import usePopper from './usePopper';
 const AnimatedShadow = Animated(SpotlightShadow);
 
 export type SpotlightProps = {
-  anchorEl: any;
+  anchorEl: HTMLElement;
   show: boolean;
   curPos: number;
   pos: number;
