@@ -3,6 +3,7 @@ import { animated } from 'react-spring';
 
 type Align = 'center' | 'top' | 'bottom';
 type Justify = 'left' | 'right' | 'center';
+type Something = 'something';
 
 type ControlProps = {
   align: Align;
