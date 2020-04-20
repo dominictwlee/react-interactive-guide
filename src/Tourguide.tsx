@@ -50,7 +50,7 @@ const Tourguide = (props: TourguideProps) => {
 
   const { anchorEls, curPos, show, setStatus } = useGuide();
 
-  const measuredStepIndicatorRef = useCallback(node => {
+  const measuredStepIndicatorRef = useCallback((node) => {
     if (node !== null) {
       setStepIndicatorWidth(node.getBoundingClientRect().width);
     }

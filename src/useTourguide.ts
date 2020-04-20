@@ -13,7 +13,7 @@ export default function useTourguide() {
   const handleRef = useCallback(
     (node: HTMLElement | null) => {
       if (node !== null && node.dataset.tourguidePosition) {
-        setAnchorEls(prevEls => {
+        setAnchorEls((prevEls) => {
           const anchors = [...prevEls];
           anchors[Number(node.dataset.tourguidePosition)] = node;
           return anchors;
@@ -35,7 +35,7 @@ export default function useTourguide() {
   );
 
   const toggle = useCallback(() => {
-    setShow(prevShow => !prevShow);
+    setShow((prevShow) => !prevShow);
   }, []);
 
   const close = useCallback(() => {
@@ -44,7 +44,7 @@ export default function useTourguide() {
   }, []);
 
   const next = useCallback(() => {
-    setCurPos(prevCurPos => {
+    setCurPos((prevCurPos) => {
       if (prevCurPos >= anchorEls.length - 1) {
         return prevCurPos;
       }
@@ -54,7 +54,7 @@ export default function useTourguide() {
   }, [anchorEls.length]);
 
   const prev = useCallback(() => {
-    setCurPos(prevCurPos => (prevCurPos === 0 ? prevCurPos : prevCurPos - 1));
+    setCurPos((prevCurPos) => (prevCurPos === 0 ? prevCurPos : prevCurPos - 1));
   }, []);
 
   const reset = useCallback(() => {
