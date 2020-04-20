@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.0...v1.3.1) (2020-04-20)
+
+
+### Bug Fixes
+
+* remove useEffect reset ([3d4f3fd](https://github.com/dominictwlee/react-interactive-guide/commit/3d4f3fd518a7cfcc4973e66298aa43e14befc457))
+
 # [1.3.0](https://github.com/dominictwlee/react-interactive-guide/compare/v1.2.1...v1.3.0) (2020-04-20)
 
 
