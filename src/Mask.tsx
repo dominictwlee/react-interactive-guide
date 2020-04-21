@@ -32,7 +32,7 @@ const Mask = forwardRef<Ref<any>, MaskProps>((props, ref) => {
           {
             name: 'offset',
             options: {
-              offset: [0, -(dimensions[1] + 7.5)],
+              offset: [0, -(dimensions[1] + 12)],
             },
           },
         ],
