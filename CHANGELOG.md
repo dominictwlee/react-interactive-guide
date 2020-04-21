@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.1...v1.3.2) (2020-04-21)
+
+
+### Bug Fixes
+
+* zindex overlapping between Tourguide children ([596eb54](https://github.com/dominictwlee/react-interactive-guide/commit/596eb5419e0ccb48363fc860d0f20b43eb8a6005))
+
 ## [1.3.1](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.0...v1.3.1) (2020-04-20)
 
 
