@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.4...v1.3.5) (2020-04-21)
+
+
+### Bug Fixes
+
+* use useEffect for non-blocking behavior ([aa4203b](https://github.com/dominictwlee/react-interactive-guide/commit/aa4203b2eb3cbe27872d73895ab8cad847fb97e6))
+
 ## [1.3.4](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.3...v1.3.4) (2020-04-21)
 
 
