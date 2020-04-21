@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.2...v1.3.3) (2020-04-21)
+
+
+### Bug Fixes
+
+* shadow inset padding ([947481a](https://github.com/dominictwlee/react-interactive-guide/commit/947481a3a8c8b532205a83cc0f5d210020ecb375))
+
 ## [1.3.2](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.1...v1.3.2) (2020-04-21)
 
 
