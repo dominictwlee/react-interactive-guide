@@ -117,6 +117,7 @@ const Tourguide = (props: TourguideProps) => {
               animated
               show={show}
               curPos={curPos}
+              index={index}
             />
             {Component && (
               <Tooltip
@@ -125,6 +126,7 @@ const Tourguide = (props: TourguideProps) => {
                 pos={Number(el.dataset.tourguidePosition)}
                 curPos={curPos}
                 animated
+                index={index}
               >
                 {Array.isArray(Component) ? (
                   Component[index]

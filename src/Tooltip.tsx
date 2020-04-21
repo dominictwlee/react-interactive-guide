@@ -20,10 +20,11 @@ type TooltipProps = {
   curPos: number;
   pos: number;
   animated?: boolean;
+  index?: number;
 };
 
 export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
-  const { anchorEl, show, children, curPos, pos, animated } = props;
+  const { anchorEl, show, children, curPos, pos, animated, index } = props;
   const { selfRef, handleAnimStart, handleAnimIdle, idle } = usePopper({
     anchorEl,
     show,
@@ -54,7 +55,7 @@ export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
   }
 
   return (
-    <div ref={selfRef}>
+    <div ref={selfRef} style={{ zIndex: index !== curPos ? -2000 : undefined }}>
       {children ? (
         <Animated.div style={animated ? scaleAnim : undefined}>
           {children}

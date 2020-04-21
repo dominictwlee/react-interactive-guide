@@ -5,18 +5,19 @@ import usePopper from './usePopper';
 
 const AnimatedShadow = Animated(SpotlightShadow);
 
-export type SpotlightProps = {
+export type MaskProps = {
   anchorEl: HTMLElement;
   show: boolean;
   curPos: number;
   pos: number;
   animated?: boolean;
+  index?: number;
 };
 
-const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
+const Mask = forwardRef<Ref<any>, MaskProps>((props, ref) => {
   const [dimensions, setDimensions] = useState<[number, number] | null>(null);
 
-  const { anchorEl, show, curPos, pos, animated } = props;
+  const { anchorEl, show, curPos, pos, animated, index } = props;
 
   useEffect(() => {
     if (anchorEl) {
@@ -65,7 +66,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
   }
 
   return (
-    <div ref={selfRef}>
+    <div ref={selfRef} style={{ zIndex: index !== curPos ? -2000 : undefined }}>
       <AnimatedShadow
         style={animated ? opacityAnim : undefined}
         dimensions={dimensions}
@@ -74,4 +75,4 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
   );
 });
 
-export default Spotlight;
+export default Mask;
