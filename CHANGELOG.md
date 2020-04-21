@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.3...v1.3.4) (2020-04-21)
+
+
+### Bug Fixes
+
+* mask position offset ([47598a7](https://github.com/dominictwlee/react-interactive-guide/commit/47598a7875c8ee0a0330c8de2f5ca712ba1d0032))
+
 ## [1.3.3](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.2...v1.3.3) (2020-04-21)
 
 
