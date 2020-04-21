@@ -1,11 +1,4 @@
-import {
-  useRef,
-  useCallback,
-  useLayoutEffect,
-  useEffect,
-  useState,
-  Ref,
-} from 'react';
+import { useRef, useCallback, useEffect, useState, Ref } from 'react';
 import { createPopper, Options, Instance } from '@popperjs/core';
 import { useForkRef } from './refUtils';
 
@@ -53,7 +46,7 @@ export default function usePopper(props: usePopperProps) {
   };
 
   // Recreate on popper change
-  useLayoutEffect(() => {
+  useEffect(() => {
     create();
 
     return () => {
