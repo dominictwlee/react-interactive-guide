@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.5...v1.4.0) (2020-04-22)
+
+
+### Features
+
+* add ability to close and nav tourguide with keyboard ([c9c53c6](https://github.com/dominictwlee/react-interactive-guide/commit/c9c53c6241fad4694bff1e20f2cef25c911d07f5))
+
 ## [1.3.5](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.4...v1.3.5) (2020-04-21)
 
 
