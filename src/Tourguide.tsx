@@ -48,7 +48,7 @@ const Tourguide = (props: TourguideProps) => {
 
   const [stepIndicatorWidth, setStepIndicatorWidth] = useState(0);
 
-  const { anchorEls, curPos, show, setStatus } = useGuide();
+  const { anchorEls, curPos, show, close, setStatus, prev, next } = useGuide();
 
   const measuredStepIndicatorRef = useCallback((node) => {
     if (node !== null) {
@@ -57,6 +57,35 @@ const Tourguide = (props: TourguideProps) => {
   }, []);
 
   const anchorEl = anchorEls[curPos];
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'Escape':
+          close();
+          break;
+        case 'ArrowLeft':
+          prev();
+          break;
+        case 'ArrowRight':
+          next();
+          break;
+        default:
+          break;
+      }
+    },
+    [close, next, prev]
+  );
+
+  useEffect(() => {
+    if (show) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown, show]);
 
   useEffect(() => {
     if (precondition && anchorEls.length) {
