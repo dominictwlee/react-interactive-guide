@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/dominictwlee/react-interactive-guide/compare/v1.4.0...v1.5.0) (2020-04-23)
+
+
+### Features
+
+* throttle keydown handler ([ef891f1](https://github.com/dominictwlee/react-interactive-guide/commit/ef891f1e99d54c45d459a2dc12d85ba47b9615e4))
+
 # [1.4.0](https://github.com/dominictwlee/react-interactive-guide/compare/v1.3.5...v1.4.0) (2020-04-22)
 
 
