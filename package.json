@@ -48,6 +48,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
+    "@types/lodash.throttle": "^4.1.6",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "@types/styled-components": "^5.0.1",
@@ -75,7 +76,8 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.1.0",
-    "react-is": ">= 16.8.0",
+    "lodash.throttle": "^4.1.1",
+    "react-is": "^16.8.0",
     "react-spring": "^8.0.27",
     "styled-components": "^5.1.0"
   },

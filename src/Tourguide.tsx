@@ -17,6 +17,7 @@ import Tooltip from './Tooltip';
 import Control from './Control';
 import useGuide from './useGuide';
 import StepIndicator from './StepIndicator';
+import throttle from 'lodash.throttle';
 
 export type TourguideProps = {
   animated?: boolean;
@@ -59,7 +60,7 @@ const Tourguide = (props: TourguideProps) => {
   const anchorEl = anchorEls[curPos];
 
   const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
+    throttle((event: KeyboardEvent) => {
       switch (event.key) {
         case 'Escape':
           close();
@@ -73,7 +74,7 @@ const Tourguide = (props: TourguideProps) => {
         default:
           break;
       }
-    },
+    }, 400),
     [close, next, prev]
   );
 
