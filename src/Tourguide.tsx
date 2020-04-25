@@ -12,7 +12,8 @@ import styled from 'styled-components';
 import ReactDOM from 'react-dom';
 import { useSpring } from 'react-spring';
 
-import Mask from './Mask';
+import Overlay from './Overlay';
+import Spotlight from './Spotlight';
 import Tooltip from './Tooltip';
 import Control from './Control';
 import useGuide from './useGuide';
@@ -48,6 +49,7 @@ const Tourguide = (props: TourguideProps) => {
   } = props;
 
   const [stepIndicatorWidth, setStepIndicatorWidth] = useState(0);
+  const [isAnimIdle, setIsAnimIdle] = useState(true);
 
   const { anchorEls, curPos, show, close, setStatus, prev, next } = useGuide();
 
@@ -78,6 +80,18 @@ const Tourguide = (props: TourguideProps) => {
     [close, next, prev]
   );
 
+  const handleAnimStart = () => {
+    if (show) {
+      setIsAnimIdle(false);
+    }
+  };
+
+  const handleAnimEnd = () => {
+    if (!show) {
+      setIsAnimIdle(true);
+    }
+  };
+
   useEffect(() => {
     if (show) {
       document.addEventListener('keydown', handleKeyDown);
@@ -96,12 +110,19 @@ const Tourguide = (props: TourguideProps) => {
 
   const opacityAnim = useSpring({
     opacity: show ? 1 : 0,
+    onStart: handleAnimStart,
+    onRest: handleAnimEnd,
   });
 
   if (!animated) {
     return ReactDOM.createPortal(
       <>
-        <Mask anchorEl={anchorEl} show={show} pos={curPos} curPos={curPos} />
+        <Spotlight
+          anchorEl={anchorEl}
+          show={show}
+          pos={curPos}
+          curPos={curPos}
+        />
         {Component && (
           <Tooltip anchorEl={anchorEl} show={show} pos={curPos} curPos={curPos}>
             {Component}
@@ -138,17 +159,22 @@ const Tourguide = (props: TourguideProps) => {
       >
         <StepIndicator steps={anchorEls.length} curPos={curPos} />
       </Control>
+      <Overlay style={opacityAnim} isIdle={isAnimIdle}>
+        {anchorEls.map((el, index) => (
+          <Spotlight
+            key={`spotlight-${index}`}
+            anchorEl={el}
+            pos={Number(el.dataset.tourguidePosition)}
+            animated
+            show={show}
+            curPos={curPos}
+            index={index}
+          />
+        ))}
+      </Overlay>
       <GuideContainer>
         {anchorEls.map((el, index) => (
           <Fragment key={`tourguideEl-${index}`}>
-            <Mask
-              anchorEl={el}
-              pos={Number(el.dataset.tourguidePosition)}
-              animated
-              show={show}
-              curPos={curPos}
-              index={index}
-            />
             {Component && (
               <Tooltip
                 show={show}

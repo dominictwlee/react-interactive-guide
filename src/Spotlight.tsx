@@ -1,11 +1,11 @@
 import React, { forwardRef, useState, useEffect, Ref } from 'react';
 import { useSpring, animated as Animated } from 'react-spring';
-import SpotlightShadow from './SpotlightShadow';
+import SpotlightLayer from './SpotlightLayer';
 import usePopper from './usePopper';
 
-const AnimatedShadow = Animated(SpotlightShadow);
+const AnimatedSpotlightLayer = Animated(SpotlightLayer);
 
-export type MaskProps = {
+export type SpotlightProps = {
   anchorEl: HTMLElement;
   show: boolean;
   curPos: number;
@@ -14,7 +14,7 @@ export type MaskProps = {
   index?: number;
 };
 
-const Mask = forwardRef<Ref<any>, MaskProps>((props, ref) => {
+const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
   const [dimensions, setDimensions] = useState<[number, number] | null>(null);
 
   const { anchorEl, show, curPos, pos, animated, index } = props;
@@ -32,7 +32,7 @@ const Mask = forwardRef<Ref<any>, MaskProps>((props, ref) => {
           {
             name: 'offset',
             options: {
-              offset: [0, -(dimensions[1] + 12)],
+              offset: [0, -dimensions[1]],
             },
           },
         ],
@@ -67,7 +67,7 @@ const Mask = forwardRef<Ref<any>, MaskProps>((props, ref) => {
 
   return (
     <div ref={selfRef} style={{ zIndex: index !== curPos ? -2000 : undefined }}>
-      <AnimatedShadow
+      <AnimatedSpotlightLayer
         style={animated ? opacityAnim : undefined}
         dimensions={dimensions}
       />
@@ -75,4 +75,4 @@ const Mask = forwardRef<Ref<any>, MaskProps>((props, ref) => {
   );
 });
 
-export default Mask;
+export default Spotlight;
