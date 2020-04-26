@@ -1,4 +1,4 @@
-import { useRef, useCallback, useEffect, useState, Ref } from 'react';
+import { useRef, useCallback, useEffect, Ref } from 'react';
 import { createPopper, Options, Instance } from '@popperjs/core';
 import { useForkRef } from './refUtils';
 
@@ -12,7 +12,6 @@ type usePopperProps = {
 
 export default function usePopper(props: usePopperProps) {
   const { anchorEl, popperOptions, ref, show, animated } = props;
-  const [idle, setIdle] = useState(true);
   const tooltipRef = useRef<HTMLElement | null>(null);
   const selfRef = useForkRef(tooltipRef, ref);
   const popperInstanceRef = useRef<Instance | null>(null);
@@ -36,15 +35,6 @@ export default function usePopper(props: usePopperProps) {
     }
   }, []);
 
-  const handleAnimStart = () => {
-    setIdle(false);
-  };
-
-  const handleAnimIdle = () => {
-    setIdle(true);
-    destroy();
-  };
-
   // Recreate on popper change
   useEffect(() => {
     create();
@@ -67,8 +57,6 @@ export default function usePopper(props: usePopperProps) {
   return {
     selfRef,
     tooltipRef,
-    handleAnimStart,
-    handleAnimIdle,
-    idle,
+    destroy,
   };
 }
