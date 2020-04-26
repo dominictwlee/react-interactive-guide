@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/dominictwlee/react-interactive-guide/compare/v2.0.0...v2.0.1) (2020-04-26)
+
+
+### Bug Fixes
+
+* move react-is and styled-components to peer dependencies ([6607023](https://github.com/dominictwlee/react-interactive-guide/commit/6607023a5eca50f98362cbdc35c5929eab3cd2b6))
+
 # [2.0.0](https://github.com/dominictwlee/react-interactive-guide/compare/v1.5.0...v2.0.0) (2020-04-26)
 
 
