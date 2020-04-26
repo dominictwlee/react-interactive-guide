@@ -31,7 +31,7 @@ export type TourguideProps = {
   precondition?: boolean;
 };
 
-const GuideContainer = styled.div({
+const TooltipContainer = styled.div({
   zIndex: 2400,
   position: 'absolute',
 });
@@ -172,7 +172,7 @@ const Tourguide = (props: TourguideProps) => {
           />
         ))}
       </Overlay>
-      <GuideContainer>
+      <TooltipContainer>
         {anchorEls.map((el, index) => (
           <Fragment key={`tourguideEl-${index}`}>
             {Component && (
@@ -195,7 +195,7 @@ const Tourguide = (props: TourguideProps) => {
             )}
           </Fragment>
         ))}
-      </GuideContainer>
+      </TooltipContainer>
     </>,
     node
   );
