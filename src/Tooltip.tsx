@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactNode, Ref } from 'react';
 import { useSpring, animated as Animated } from 'react-spring';
 import usePopper from './usePopper';
+import useAnimLifecycle from './useAnimLifecycle';
 
 const popperOptions = {
   modifiers: [
@@ -24,8 +25,9 @@ type TooltipProps = {
 };
 
 export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
-  const { anchorEl, show, children, curPos, pos, animated, index } = props;
-  const { selfRef, handleAnimStart, handleAnimIdle, idle } = usePopper({
+  const { anchorEl, show, children, curPos, pos, animated } = props;
+
+  const { selfRef, destroy } = usePopper({
     anchorEl,
     show,
     popperOptions,
@@ -33,29 +35,31 @@ export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
     animated,
   });
 
+  const { handleAnimStart, handleAnimRest, animLifecycle } = useAnimLifecycle({
+    show,
+    curPos,
+    pos,
+    destroy,
+  });
+
   const scaleAnim = useSpring({
     to: {
       opacity: show && curPos === pos ? 1 : 0,
       transform: show && curPos === pos ? 'scaleY(1)' : 'scaleY(0)',
     },
-    onStart: () => {
-      if (show && handleAnimStart) {
-        handleAnimStart();
-      }
-    },
-    onRest: () => {
-      if (!show && handleAnimIdle) {
-        handleAnimIdle();
-      }
-    },
+    onStart: handleAnimStart,
+    onRest: handleAnimRest,
   });
 
-  if (!show && (!animated || idle)) {
+  if (!show && (!animated || animLifecycle === 'idle')) {
     return null;
   }
 
   return (
-    <div ref={selfRef} style={{ zIndex: index !== curPos ? -2000 : undefined }}>
+    <div
+      ref={selfRef}
+      style={{ visibility: animLifecycle === 'standby' ? 'hidden' : 'visible' }}
+    >
       {children ? (
         <Animated.div style={animated ? scaleAnim : undefined}>
           {children}
