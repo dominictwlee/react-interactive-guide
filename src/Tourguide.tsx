@@ -160,15 +160,14 @@ const Tourguide = (props: TourguideProps) => {
         <StepIndicator steps={anchorEls.length} curPos={curPos} />
       </Control>
       <Overlay style={opacityAnim} isIdle={isAnimIdle}>
-        {anchorEls.map((el, index) => (
+        {anchorEls.map((el) => (
           <Spotlight
-            key={`spotlight-${index}`}
+            key={`spotlight-${el.dataset.tourguidePosition}`}
             anchorEl={el}
             pos={Number(el.dataset.tourguidePosition)}
             animated
             show={show}
             curPos={curPos}
-            index={index}
           />
         ))}
       </Overlay>

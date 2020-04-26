@@ -11,13 +11,17 @@ export type SpotlightProps = {
   curPos: number;
   pos: number;
   animated?: boolean;
-  index?: number;
 };
+
+type SpotlightStatus = 'idle' | 'standby' | 'active';
 
 const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
   const [dimensions, setDimensions] = useState<[number, number] | null>(null);
-  const [isAnimIdle, setIsAnimIdle] = useState<boolean>(true);
-  const { anchorEl, show, curPos, pos, animated, index } = props;
+  const [spotlightStatus, setSpotlightStatus] = useState<SpotlightStatus>(
+    'idle'
+  );
+  const { anchorEl, show, curPos, pos, animated } = props;
+
   const popperOptions = dimensions
     ? {
         modifiers: [
@@ -47,25 +51,29 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
   }, [anchorEl]);
 
   const handleAnimStart = () => {
-    if (show) {
-      setIsAnimIdle(false);
+    if (show && curPos === pos) {
+      setSpotlightStatus('active');
+    } else if (show) {
+      setSpotlightStatus('standby');
     }
   };
 
-  const handleAnimIdle = () => {
+  const handleAnimRest = () => {
     if (!show) {
       destroy();
-      setIsAnimIdle(true);
+      setSpotlightStatus('idle');
+    } else if (curPos !== pos) {
+      setSpotlightStatus('standby');
     }
   };
 
   const opacityAnim = useSpring({
     opacity: show && curPos === pos ? 1 : 0,
     onStart: handleAnimStart,
-    onRest: handleAnimIdle,
+    onRest: handleAnimRest,
   });
 
-  if (!dimensions || (!show && (!animated || isAnimIdle))) {
+  if (!dimensions || (!show && (!animated || spotlightStatus === 'idle'))) {
     return null;
   }
 
@@ -73,7 +81,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
     <div
       ref={selfRef}
       style={{
-        zIndex: index !== curPos ? -2000 : undefined,
+        visibility: spotlightStatus === 'standby' ? 'hidden' : 'visible',
       }}
     >
       <AnimatedSpotlightLayer
