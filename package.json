@@ -37,6 +37,7 @@
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "react-is": "^16.13.1",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
@@ -64,7 +65,7 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "2.x",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.8",
+    "lint-staged": "^10.1.7",
     "microbundle": "^0.11.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.4",
@@ -77,9 +78,7 @@
   "dependencies": {
     "@popperjs/core": "^2.1.0",
     "lodash.throttle": "^4.1.1",
-    "react-is": "^16.8.0",
-    "react-spring": "^8.0.27",
-    "styled-components": "^5.1.0"
+    "react-spring": "^8.0.27"
   },
   "husky": {
     "hooks": {
