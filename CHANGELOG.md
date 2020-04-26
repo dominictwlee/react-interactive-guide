@@ -1,3 +1,21 @@
+# [2.0.0](https://github.com/dominictwlee/react-interactive-guide/compare/v1.5.0...v2.0.0) (2020-04-26)
+
+
+### Bug Fixes
+
+* set spotlight visibility to hidden if not focused and not active ([ac1c098](https://github.com/dominictwlee/react-interactive-guide/commit/ac1c0982e37ce5a925abb71126ee1bce7107b6c7))
+* set visibility to hidden if tooltip is not active ([ddeda72](https://github.com/dominictwlee/react-interactive-guide/commit/ddeda72bc4d3eafbec4ea1593e95c8f3e60cc92c))
+
+
+### Features
+
+* mix blend mode spotlight layer ([82546fa](https://github.com/dominictwlee/react-interactive-guide/commit/82546fa0ed02af09d408d33586a7cf083aa4fb8a))
+
+
+### BREAKING CHANGES
+
+* Overlay goes on top of other elements and blocks user from interacting with underlying elements when guide is on. Spotlight can now be shaped like any other div.
+
 # [1.5.0](https://github.com/dominictwlee/react-interactive-guide/compare/v1.4.0...v1.5.0) (2020-04-23)
 
 
