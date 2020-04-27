@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/dominictwlee/react-interactive-guide/compare/v2.0.1...v2.0.2) (2020-04-27)
+
+
+### Bug Fixes
+
+* position fixed for overlay ([0eff594](https://github.com/dominictwlee/react-interactive-guide/commit/0eff5948682143c6c828e4aa81a899af80e7b920))
+
 ## [2.0.1](https://github.com/dominictwlee/react-interactive-guide/compare/v2.0.0...v2.0.1) (2020-04-26)
 
 
