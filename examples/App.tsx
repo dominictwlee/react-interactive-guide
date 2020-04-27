@@ -45,7 +45,7 @@ function App() {
       <Tourguide
         animated
         node={node}
-        tooltip={messages.map(message => (
+        tooltip={messages.map((message) => (
           <Card>{message}</Card>
         ))}
         leftControl={

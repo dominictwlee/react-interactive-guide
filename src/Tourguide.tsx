@@ -11,6 +11,7 @@ import React, {
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
 import { useSpring } from 'react-spring';
+import throttle from 'lodash.throttle';
 
 import Overlay from './Overlay';
 import Spotlight from './Spotlight';
@@ -18,7 +19,7 @@ import Tooltip from './Tooltip';
 import Control from './Control';
 import useGuide from './useGuide';
 import StepIndicator from './StepIndicator';
-import throttle from 'lodash.throttle';
+import { PositionStyles } from './types';
 
 export type TourguideProps = {
   animated?: boolean;
@@ -29,6 +30,7 @@ export type TourguideProps = {
   rightControl?: React.ReactElement;
   closeControl?: React.ReactElement;
   precondition?: boolean;
+  positionStyles?: PositionStyles;
 };
 
 const TooltipContainer = styled.div({
