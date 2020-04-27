@@ -66,7 +66,7 @@
     "eslint-plugin-react-hooks": "2.x",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.7",
-    "microbundle": "^0.11.0",
+    "microbundle": "^0.12.0-next.8",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.4",
     "react": ">= 16.8.0",
