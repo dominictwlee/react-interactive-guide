@@ -45,17 +45,7 @@ function App() {
       <Tourguide
         styles={{
           spotlight: {
-            width: (baseWidth) => baseWidth + 100,
-            height: (baseHeight) => baseHeight + 50,
-            offsetX: 20,
-            offsetY: 20,
-          },
-        }}
-        positionStyles={{
-          spotlight: {
-            1: {
-              offsetX: 300,
-            },
+            height: (baseHeight) => baseHeight - 24,
           },
         }}
         animated

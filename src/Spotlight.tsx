@@ -83,6 +83,16 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
     return [width, height];
   }, [dimensions, posWidth, globalWidth, posHeight, globalHeight]);
 
+  const calculateOffsetY = (
+    dimen: [number, number],
+    customDimen: [number, number]
+  ) => {
+    if (customDimen[1] < dimen[1]) {
+      return -(Math.abs(customDimen[1] - dimen[1]) / 2 + customDimen[1]);
+    }
+    return -(Math.abs(customDimen[1] - dimen[1]) / 2 + dimen[1]);
+  };
+
   const popperOptions =
     dimensions && customizedDimensions
       ? {
@@ -97,10 +107,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
                       : globalOffsetX
                       ? globalOffsetX
                       : 0),
-                  -(
-                    Math.abs(customizedDimensions[1] - dimensions[1]) / 2 +
-                    dimensions[1]
-                  ) +
+                  calculateOffsetY(dimensions, customizedDimensions) +
                     -(posOffsetY
                       ? posOffsetY
                       : globalOffsetY
