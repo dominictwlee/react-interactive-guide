@@ -30,19 +30,22 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
 
   const [dimensions, setDimensions] = useState<[number, number] | null>(null);
 
+  const posStyles =
+    positionStyles && positionStyles[pos] ? positionStyles[pos] : {};
+
   const {
     width: posWidth,
     height: posHeight,
     offsetX: posOffsetX,
     offsetY: posOffsetY,
-  } = positionStyles?.[pos] ?? {};
+  } = posStyles;
 
   const {
     width: globalWidth,
     height: globalHeight,
     offsetX: globalOffsetX,
     offsetY: globalOffsetY,
-  } = styles ?? {};
+  } = styles || {};
 
   const customizedDimensions = useMemo<[number, number] | null>(() => {
     if (!dimensions) {

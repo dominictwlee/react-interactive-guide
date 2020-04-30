@@ -127,8 +127,8 @@ const Tourguide = (props: TourguideProps) => {
           show={show}
           pos={curPos}
           curPos={curPos}
-          positionStyles={positionStyles?.spotlight}
-          styles={styles?.spotlight}
+          positionStyles={positionStyles && positionStyles.spotlight}
+          styles={styles && styles.spotlight}
         />
         {Component && (
           <Tooltip anchorEl={anchorEl} show={show} pos={curPos} curPos={curPos}>
@@ -175,8 +175,8 @@ const Tourguide = (props: TourguideProps) => {
             animated
             show={show}
             curPos={curPos}
-            positionStyles={positionStyles?.spotlight}
-            styles={styles?.spotlight}
+            positionStyles={positionStyles && positionStyles.spotlight}
+            styles={styles && styles.spotlight}
           />
         ))}
       </Overlay>
