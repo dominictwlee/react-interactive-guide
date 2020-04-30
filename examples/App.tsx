@@ -47,16 +47,16 @@ function App() {
           spotlight: {
             width: (baseWidth) => baseWidth + 100,
             height: (baseHeight) => baseHeight + 50,
+            offsetX: 100,
           },
         }}
-        // positionStyles={{
-        //   spotlight: {
-        //     0: {
-        //       width: (baseWidth) => baseWidth + 500,
-        //       height: (baseHeight) => baseHeight + 30,
-        //     },
-        //   },
-        // }}
+        positionStyles={{
+          spotlight: {
+            1: {
+              offsetX: 300,
+            },
+          },
+        }}
         animated
         node={node}
         tooltip={messages.map((message) => (

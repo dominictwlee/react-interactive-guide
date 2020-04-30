@@ -30,17 +30,24 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
 
   const [dimensions, setDimensions] = useState<[number, number] | null>(null);
 
+  const {
+    width: posWidth,
+    height: posHeight,
+    offsetX: posOffsetX,
+    offsetY: posOffsetY,
+  } = positionStyles?.[pos] ?? {};
+
+  const {
+    width: globalWidth,
+    height: globalHeight,
+    offsetX: globalOffsetX,
+    offsetY: globalOffsetY,
+  } = styles ?? {};
+
   const customizedDimensions = useMemo<[number, number] | null>(() => {
     if (!dimensions) {
       return dimensions;
     }
-
-    if (!positionStyles && !styles) {
-      return dimensions;
-    }
-
-    const { width: posWidth, height: posHeight } = positionStyles?.[pos] ?? {};
-    const { width: globalWidth, height: globalHeight } = styles ?? {};
 
     const [baseWidth, baseHeight] = dimensions;
 
@@ -71,7 +78,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
     }
 
     return [width, height];
-  }, [dimensions, positionStyles, pos, styles]);
+  }, [dimensions, posWidth, globalWidth, posHeight, globalHeight]);
 
   const popperOptions =
     dimensions && customizedDimensions
@@ -81,11 +88,21 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
               name: 'offset',
               options: {
                 offset: [
-                  0,
+                  0 +
+                    (posOffsetX
+                      ? posOffsetX
+                      : globalOffsetX
+                      ? globalOffsetX
+                      : 0),
                   -(
                     Math.abs(customizedDimensions[1] - dimensions[1]) / 2 +
                     dimensions[1]
-                  ),
+                  ) +
+                    (posOffsetY
+                      ? posOffsetY
+                      : globalOffsetY
+                      ? globalOffsetY
+                      : 0),
                 ],
               },
             },
