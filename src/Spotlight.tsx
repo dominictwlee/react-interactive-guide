@@ -1,8 +1,9 @@
-import React, { forwardRef, useState, useEffect, Ref } from 'react';
+import React, { forwardRef, useState, useEffect, Ref, useMemo } from 'react';
 import { useSpring, animated as Animated } from 'react-spring';
 import SpotlightLayer from './SpotlightLayer';
 import usePopper from './usePopper';
 import useAnimLifecycle from './useAnimLifecycle';
+import { PositionStyles, GlobalStyles } from './types';
 
 const AnimatedSpotlightLayer = Animated(SpotlightLayer);
 
@@ -12,23 +13,73 @@ export type SpotlightProps = {
   curPos: number;
   pos: number;
   animated?: boolean;
+  positionStyles?: PositionStyles['spotlight'];
+  styles?: GlobalStyles['spotlight'];
 };
 
 const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
+  const {
+    anchorEl,
+    show,
+    curPos,
+    pos,
+    animated,
+    positionStyles,
+    styles,
+  } = props;
+
   const [dimensions, setDimensions] = useState<[number, number] | null>(null);
-  const { anchorEl, show, curPos, pos, animated } = props;
-  const popperOptions = dimensions
-    ? {
-        modifiers: [
-          {
-            name: 'offset',
-            options: {
-              offset: [0, -dimensions[1]],
+
+  const customizedDimensions = useMemo<[number, number] | null>(() => {
+    if (!dimensions) {
+      return dimensions;
+    }
+
+    if (!positionStyles || !positionStyles[pos]) {
+      return dimensions;
+    }
+
+    const { width: posWidth, height: posHeight } = positionStyles[pos];
+    const [baseWidth, baseHeight] = dimensions;
+
+    let width: number;
+    let height: number;
+
+    if (posWidth != null) {
+      width = typeof posWidth === 'function' ? posWidth(baseWidth) : posWidth;
+    } else {
+      width = baseWidth;
+    }
+
+    if (posHeight != null) {
+      height =
+        typeof posHeight === 'function' ? posHeight(baseHeight) : posHeight;
+    } else {
+      height = baseHeight;
+    }
+
+    return [width, height];
+  }, [dimensions, positionStyles, pos]);
+
+  const popperOptions =
+    dimensions && customizedDimensions
+      ? {
+          modifiers: [
+            {
+              name: 'offset',
+              options: {
+                offset: [
+                  0,
+                  -(
+                    Math.abs(customizedDimensions[1] - dimensions[1]) / 2 +
+                    dimensions[1]
+                  ),
+                ],
+              },
             },
-          },
-        ],
-      }
-    : null;
+          ],
+        }
+      : null;
 
   const { selfRef, destroy } = usePopper({
     anchorEl,
@@ -56,9 +107,13 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
     opacity: show && curPos === pos ? 1 : 0,
     onStart: handleAnimStart,
     onRest: handleAnimRest,
+    config: styles?.spring,
   });
 
-  if (!dimensions || (!show && (!animated || animLifecycle === 'idle'))) {
+  if (
+    !customizedDimensions ||
+    (!show && (!animated || animLifecycle === 'idle'))
+  ) {
     return null;
   }
 
@@ -71,7 +126,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
     >
       <AnimatedSpotlightLayer
         style={animated ? opacityAnim : undefined}
-        dimensions={dimensions}
+        dimensions={customizedDimensions}
       />
     </div>
   );

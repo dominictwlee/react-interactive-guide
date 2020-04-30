@@ -1,13 +1,19 @@
 import { SpringConfig } from 'react-spring';
 
 export type StyleConfig = {
-  width?: (baseWidth: number) => void | number;
-  height?: (baseHeight: number) => void | number;
+  width?: ((baseWidth: number) => number) | number;
+  height?: ((baseHeight: number) => number) | number;
   spring?: SpringConfig;
 };
 
+export type SpotlightStylesGlobal = Omit<StyleConfig, 'width' | 'height'>;
+
+export type GlobalStyles = {
+  spotlight?: SpotlightStylesGlobal;
+};
+
 export type PositionStyles = {
-  [position: number]: {
-    spotlight?: StyleConfig;
+  spotlight?: {
+    [position: number]: Omit<StyleConfig, 'spring'>;
   };
 };

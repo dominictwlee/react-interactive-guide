@@ -19,7 +19,7 @@ import Tooltip from './Tooltip';
 import Control from './Control';
 import useGuide from './useGuide';
 import StepIndicator from './StepIndicator';
-import { PositionStyles } from './types';
+import { PositionStyles, GlobalStyles } from './types';
 
 export type TourguideProps = {
   animated?: boolean;
@@ -31,6 +31,7 @@ export type TourguideProps = {
   closeControl?: React.ReactElement;
   precondition?: boolean;
   positionStyles?: PositionStyles;
+  styles?: GlobalStyles;
 };
 
 const TooltipContainer = styled.div({
@@ -48,6 +49,8 @@ const Tourguide = (props: TourguideProps) => {
     leftControl,
     rightControl,
     closeControl,
+    positionStyles,
+    styles,
   } = props;
 
   const [stepIndicatorWidth, setStepIndicatorWidth] = useState(0);
@@ -124,6 +127,8 @@ const Tourguide = (props: TourguideProps) => {
           show={show}
           pos={curPos}
           curPos={curPos}
+          positionStyles={positionStyles?.spotlight}
+          styles={styles?.spotlight}
         />
         {Component && (
           <Tooltip anchorEl={anchorEl} show={show} pos={curPos} curPos={curPos}>
@@ -170,6 +175,8 @@ const Tourguide = (props: TourguideProps) => {
             animated
             show={show}
             curPos={curPos}
+            positionStyles={positionStyles?.spotlight}
+            styles={styles?.spotlight}
           />
         ))}
       </Overlay>

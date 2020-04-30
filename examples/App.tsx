@@ -43,6 +43,14 @@ function App() {
         <button onClick={toggle}>show</button>
       </div>
       <Tourguide
+        positionStyles={{
+          spotlight: {
+            0: {
+              width: (baseWidth) => baseWidth + 500,
+              height: (baseHeight) => baseHeight + 30,
+            },
+          },
+        }}
         animated
         node={node}
         tooltip={messages.map((message) => (
