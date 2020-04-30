@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/dominictwlee/react-interactive-guide/compare/v2.1.0...v2.2.0) (2020-04-30)
+
+
+### Features
+
+* export tourguide style props ([4bc054f](https://github.com/dominictwlee/react-interactive-guide/commit/4bc054fb8765421a0b7011aafcd6c50a3cf957d4))
+
 # [2.1.0](https://github.com/dominictwlee/react-interactive-guide/compare/v2.0.2...v2.1.0) (2020-04-30)
 
 
