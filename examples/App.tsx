@@ -47,7 +47,8 @@ function App() {
           spotlight: {
             width: (baseWidth) => baseWidth + 100,
             height: (baseHeight) => baseHeight + 50,
-            offsetX: 100,
+            offsetX: 20,
+            offsetY: 20,
           },
         }}
         positionStyles={{

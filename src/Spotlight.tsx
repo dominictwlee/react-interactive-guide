@@ -101,7 +101,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
                     Math.abs(customizedDimensions[1] - dimensions[1]) / 2 +
                     dimensions[1]
                   ) +
-                    (posOffsetY
+                    -(posOffsetY
                       ? posOffsetY
                       : globalOffsetY
                       ? globalOffsetY
