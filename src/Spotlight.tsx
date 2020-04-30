@@ -35,11 +35,13 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
       return dimensions;
     }
 
-    if (!positionStyles || !positionStyles[pos]) {
+    if (!positionStyles && !styles) {
       return dimensions;
     }
 
-    const { width: posWidth, height: posHeight } = positionStyles[pos];
+    const { width: posWidth, height: posHeight } = positionStyles?.[pos] ?? {};
+    const { width: globalWidth, height: globalHeight } = styles ?? {};
+
     const [baseWidth, baseHeight] = dimensions;
 
     let width: number;
@@ -47,6 +49,11 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
 
     if (posWidth != null) {
       width = typeof posWidth === 'function' ? posWidth(baseWidth) : posWidth;
+    } else if (globalWidth != null) {
+      width =
+        typeof globalWidth === 'function'
+          ? globalWidth(baseWidth)
+          : globalWidth;
     } else {
       width = baseWidth;
     }
@@ -54,12 +61,17 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
     if (posHeight != null) {
       height =
         typeof posHeight === 'function' ? posHeight(baseHeight) : posHeight;
+    } else if (globalHeight != null) {
+      height =
+        typeof globalHeight === 'function'
+          ? globalHeight(baseHeight)
+          : globalHeight;
     } else {
       height = baseHeight;
     }
 
     return [width, height];
-  }, [dimensions, positionStyles, pos]);
+  }, [dimensions, positionStyles, pos, styles]);
 
   const popperOptions =
     dimensions && customizedDimensions

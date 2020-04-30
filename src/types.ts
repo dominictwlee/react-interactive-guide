@@ -6,10 +6,8 @@ export type StyleConfig = {
   spring?: SpringConfig;
 };
 
-export type SpotlightStylesGlobal = Omit<StyleConfig, 'width' | 'height'>;
-
 export type GlobalStyles = {
-  spotlight?: SpotlightStylesGlobal;
+  spotlight?: StyleConfig;
 };
 
 export type PositionStyles = {
