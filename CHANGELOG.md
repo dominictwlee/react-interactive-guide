@@ -1,3 +1,13 @@
+# [2.1.0](https://github.com/dominictwlee/react-interactive-guide/compare/v2.0.2...v2.1.0) (2020-04-30)
+
+
+### Features
+
+* add global width height style overrides ([7951848](https://github.com/dominictwlee/react-interactive-guide/commit/7951848bbf046234a7386118fe67891d87023424))
+* add offset positioning options for spotlight ([2aaf57f](https://github.com/dominictwlee/react-interactive-guide/commit/2aaf57f48ebcde4602732a3594a68453c5706259))
+* add width, height and spring style config for spotlight ([8db2b37](https://github.com/dominictwlee/react-interactive-guide/commit/8db2b37c8f8252ad9c7e08b4a091323773df0411))
+* type def for style config ([d9d6ae0](https://github.com/dominictwlee/react-interactive-guide/commit/d9d6ae004d1f40371c9a3d3934cbc21321274c73))
+
 ## [2.0.2](https://github.com/dominictwlee/react-interactive-guide/compare/v2.0.1...v2.0.2) (2020-04-27)
 
 
