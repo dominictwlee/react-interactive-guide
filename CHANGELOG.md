@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.1...v2.2.2) (2020-04-30)
+
+
+### Bug Fixes
+
+* handle offset if custom dimen height is smaller than base ([5083d3f](https://github.com/dominictwlee/react-interactive-guide/commit/5083d3fc31a5c899054096148563d43ffcf3355d))
+
 ## [2.2.1](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.0...v2.2.1) (2020-04-30)
 
 
