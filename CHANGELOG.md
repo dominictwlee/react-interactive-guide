@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.0...v2.2.1) (2020-04-30)
+
+
+### Bug Fixes
+
+* reverse offsetY ([e90e9f9](https://github.com/dominictwlee/react-interactive-guide/commit/e90e9f92378d838bf94354cbc7984d98fef10168))
+
 # [2.2.0](https://github.com/dominictwlee/react-interactive-guide/compare/v2.1.0...v2.2.0) (2020-04-30)
 
 
