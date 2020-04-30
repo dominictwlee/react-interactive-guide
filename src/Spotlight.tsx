@@ -139,7 +139,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
     opacity: show && curPos === pos ? 1 : 0,
     onStart: handleAnimStart,
     onRest: handleAnimRest,
-    config: styles?.spring,
+    config: styles && styles.spring,
   });
 
   if (
