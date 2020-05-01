@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.2...v2.2.3) (2020-05-01)
+
+
+### Bug Fixes
+
+* hide Control and Overlay when tourguide is not showing ([6bbf1e7](https://github.com/dominictwlee/react-interactive-guide/commit/6bbf1e7003362faa023209d07a7e355c338885a8))
+
 ## [2.2.2](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.1...v2.2.2) (2020-04-30)
 
 
