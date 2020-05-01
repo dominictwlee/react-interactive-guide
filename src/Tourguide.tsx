@@ -212,6 +212,7 @@ const Tourguide = (props: TourguideProps) => {
                 curPos={curPos}
                 animated
                 index={index}
+                styles={styles && styles.tooltip}
               >
                 {Array.isArray(Component) ? (
                   Component[index]

@@ -10,6 +10,7 @@ export type StyleConfig = {
 
 export type GlobalStyles = {
   spotlight?: StyleConfig;
+  tooltip?: StyleConfig;
 };
 
 export type PositionStyles = {

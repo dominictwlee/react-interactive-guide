@@ -2,6 +2,7 @@ import React, { forwardRef, ReactNode, Ref } from 'react';
 import { useSpring, animated as Animated } from 'react-spring';
 import usePopper from './usePopper';
 import useAnimLifecycle from './useAnimLifecycle';
+import { GlobalStyles } from 'types';
 
 const popperOptions = {
   modifiers: [
@@ -22,10 +23,11 @@ type TooltipProps = {
   pos: number;
   animated?: boolean;
   index?: number;
+  styles?: GlobalStyles['tooltip'];
 };
 
 export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
-  const { anchorEl, show, children, curPos, pos, animated } = props;
+  const { anchorEl, show, children, curPos, pos, animated, styles } = props;
 
   const { selfRef, destroy } = usePopper({
     anchorEl,
@@ -49,6 +51,7 @@ export const Tooltip = forwardRef<Ref<any>, TooltipProps>((props, ref) => {
     },
     onStart: handleAnimStart,
     onRest: handleAnimRest,
+    config: styles && styles.spring,
   });
 
   if (!show && (!animated || animLifecycle === 'idle')) {
