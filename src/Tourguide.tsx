@@ -143,17 +143,35 @@ const Tourguide = (props: TourguideProps) => {
   return ReactDOM.createPortal(
     <>
       {leftControl && (
-        <Control align="center" justify="left" style={opacityAnim}>
+        <Control
+          align="center"
+          justify="left"
+          style={opacityAnim}
+          isIdle={isAnimIdle}
+          show={show}
+        >
           {leftControl}
         </Control>
       )}
       {rightControl && (
-        <Control align="center" justify="right" style={opacityAnim}>
+        <Control
+          align="center"
+          justify="right"
+          style={opacityAnim}
+          isIdle={isAnimIdle}
+          show={show}
+        >
           {rightControl}
         </Control>
       )}
       {closeControl && (
-        <Control align="top" justify="right" style={opacityAnim}>
+        <Control
+          align="top"
+          justify="right"
+          style={opacityAnim}
+          isIdle={isAnimIdle}
+          show={show}
+        >
           {closeControl}
         </Control>
       )}
@@ -163,10 +181,13 @@ const Tourguide = (props: TourguideProps) => {
         ref={measuredStepIndicatorRef}
         measuredWidth={stepIndicatorWidth}
         style={opacityAnim}
+        isIdle={isAnimIdle}
+        show={show}
       >
         <StepIndicator steps={anchorEls.length} curPos={curPos} />
       </Control>
-      <Overlay style={opacityAnim} isIdle={isAnimIdle}>
+      }
+      <Overlay style={opacityAnim} isIdle={isAnimIdle} show={show}>
         {anchorEls.map((el) => (
           <Spotlight
             key={`spotlight-${el.dataset.tourguidePosition}`}

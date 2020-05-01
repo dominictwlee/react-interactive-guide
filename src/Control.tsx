@@ -8,6 +8,8 @@ type ControlProps = {
   align: Align;
   justify: Justify;
   measuredWidth?: number;
+  show?: boolean;
+  isIdle?: boolean;
 };
 
 type Position = {
@@ -46,11 +48,14 @@ function getPosition(
 }
 
 const Control = animated(
-  styled.div<ControlProps>(({ justify, align, measuredWidth }) => ({
-    position: 'absolute',
-    zIndex: 2600,
-    ...getPosition(justify, align, measuredWidth),
-  }))
+  styled.div<ControlProps>(
+    ({ justify, align, measuredWidth, isIdle, show }) => ({
+      position: 'absolute',
+      zIndex: 2600,
+      visibility: isIdle && !show ? 'hidden' : 'visible',
+      ...getPosition(justify, align, measuredWidth),
+    })
+  )
 );
 
 export default Control;
