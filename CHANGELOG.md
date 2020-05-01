@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.4...v2.3.0) (2020-05-01)
+
+
+### Features
+
+* pass global styles to tooltip ([c6c9b34](https://github.com/dominictwlee/react-interactive-guide/commit/c6c9b34db3c9f7d1d7eaf2bbf5ab38a39d0eb750))
+
 ## [2.2.4](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.3...v2.2.4) (2020-05-01)
 
 
