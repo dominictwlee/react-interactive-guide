@@ -14,6 +14,7 @@ const Overlay = animated(
     right: 0,
     top: 0,
     overflow: 'hidden',
+    zIndex: 2300,
     visibility: isIdle && !show ? 'hidden' : 'visible',
     backgroundColor: 'rgba(26, 29, 52, 0.5)',
     mixBlendMode: 'hard-light',
