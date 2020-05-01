@@ -1,3 +1,10 @@
+## [2.2.4](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.3...v2.2.4) (2020-05-01)
+
+
+### Bug Fixes
+
+* bump up overlay zIndex ([7de84e3](https://github.com/dominictwlee/react-interactive-guide/commit/7de84e33efe9c4c036f5178c74a490d0984df0a5))
+
 ## [2.2.3](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.2...v2.2.3) (2020-05-01)
 
 
