@@ -46,6 +46,14 @@ function App() {
         styles={{
           spotlight: {
             height: (baseHeight) => baseHeight - 24,
+            spring: {
+              tension: 400,
+            },
+          },
+          tooltip: {
+            spring: {
+              tension: 500,
+            },
           },
         }}
         animated
