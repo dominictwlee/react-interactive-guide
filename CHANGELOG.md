@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/dominictwlee/react-interactive-guide/compare/v2.3.0...v2.3.1) (2020-05-05)
+
+
+### Bug Fixes
+
+* return null if no node ([45cd740](https://github.com/dominictwlee/react-interactive-guide/commit/45cd740cb2498adb127db5a6ca237e0adb0a6e71))
+
 # [2.3.0](https://github.com/dominictwlee/react-interactive-guide/compare/v2.2.4...v2.3.0) (2020-05-01)
 
 
