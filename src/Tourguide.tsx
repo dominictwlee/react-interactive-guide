@@ -25,7 +25,7 @@ export type TourguideProps = {
   animated?: boolean;
   tooltip?: JSX.Element[] | ReactElement | ComponentType;
   content?: ReactNode[];
-  node: HTMLElement;
+  node: HTMLElement | null;
   leftControl?: React.ReactElement;
   rightControl?: React.ReactElement;
   closeControl?: React.ReactElement;
@@ -118,6 +118,10 @@ const Tourguide = (props: TourguideProps) => {
     onStart: handleAnimStart,
     onRest: handleAnimEnd,
   });
+
+  if (node == null) {
+    return null;
+  }
 
   if (!animated) {
     return ReactDOM.createPortal(
