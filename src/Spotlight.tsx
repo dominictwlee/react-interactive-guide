@@ -108,7 +108,7 @@ const Spotlight = forwardRef<Ref<any>, SpotlightProps>((props, ref) => {
                       ? globalOffsetX
                       : 0),
                   calculateOffsetY(dimensions, customizedDimensions) +
-                    -(posOffsetY
+                    (posOffsetY
                       ? posOffsetY
                       : globalOffsetY
                       ? globalOffsetY
