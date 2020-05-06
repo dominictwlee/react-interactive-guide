@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/dominictwlee/react-interactive-guide/compare/v2.3.1...v3.0.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* reverse offset to match css positioning system ([9ea5291](https://github.com/dominictwlee/react-interactive-guide/commit/9ea529162b60d7ea4ace7250ce11ec1a079e75b1))
+
+
+### BREAKING CHANGES
+
+* This reverses the direction that elements will move according to offsetY
+
 ## [2.3.1](https://github.com/dominictwlee/react-interactive-guide/compare/v2.3.0...v2.3.1) (2020-05-05)
 
 
