@@ -41,10 +41,10 @@ const TooltipContainer = styled.div({
 
 const Tourguide = (props: TourguideProps) => {
   const {
-    tooltip: Component,
+    tooltip: TooltipComponent,
     animated = true,
     precondition = true,
-    content,
+    content: allContent,
     node,
     leftControl,
     rightControl,
@@ -55,8 +55,21 @@ const Tourguide = (props: TourguideProps) => {
 
   const [stepIndicatorWidth, setStepIndicatorWidth] = useState(0);
   const [isAnimIdle, setIsAnimIdle] = useState(true);
+  const [content, setContent] = useState<ReactNode[]>();
+  const [Component, setComponent] = useState<
+    TourguideProps['tooltip'] | undefined
+  >(TooltipComponent);
 
-  const { anchorEls, curPos, show, close, setStatus, prev, next } = useGuide();
+  const {
+    anchorEls,
+    curPos,
+    show,
+    close,
+    setStatus,
+    prev,
+    next,
+    allAnchorEls,
+  } = useGuide();
 
   const measuredStepIndicatorRef = useCallback((node) => {
     if (node !== null) {
@@ -97,6 +110,22 @@ const Tourguide = (props: TourguideProps) => {
     }
   };
 
+  const filterOutUnused = useCallback(
+    (value?: any) => {
+      return Array.isArray(value)
+        ? value
+            .map((item, index: number) => {
+              if (!!allAnchorEls[index]) {
+                return item;
+              }
+              return undefined;
+            })
+            .filter((item) => !!item)
+        : value;
+    },
+    [allAnchorEls]
+  );
+
   useEffect(() => {
     if (show) {
       document.addEventListener('keydown', handleKeyDown);
@@ -113,6 +142,16 @@ const Tourguide = (props: TourguideProps) => {
     }
   }, [anchorEls.length, precondition, setStatus]);
 
+  useEffect(() => {
+    setComponent(
+      filterOutUnused(TooltipComponent) as TourguideProps['tooltip']
+    );
+  }, [TooltipComponent, filterOutUnused]);
+
+  useEffect(() => {
+    setContent(filterOutUnused(allContent));
+  }, [allContent, filterOutUnused]);
+
   const opacityAnim = useSpring({
     opacity: show ? 1 : 0,
     onStart: handleAnimStart,
@@ -127,7 +166,7 @@ const Tourguide = (props: TourguideProps) => {
     return ReactDOM.createPortal(
       <>
         <Spotlight
-          anchorEl={anchorEl}
+          anchorEl={anchorEl.node}
           show={show}
           pos={curPos}
           curPos={curPos}
@@ -135,7 +174,12 @@ const Tourguide = (props: TourguideProps) => {
           styles={styles && styles.spotlight}
         />
         {Component && (
-          <Tooltip anchorEl={anchorEl} show={show} pos={curPos} curPos={curPos}>
+          <Tooltip
+            anchorEl={anchorEl.node}
+            show={show}
+            pos={curPos}
+            curPos={curPos}
+          >
             {Component}
           </Tooltip>
         )}
@@ -194,9 +238,9 @@ const Tourguide = (props: TourguideProps) => {
       <Overlay style={opacityAnim} isIdle={isAnimIdle} show={show}>
         {anchorEls.map((el) => (
           <Spotlight
-            key={`spotlight-${el.dataset.tourguidePosition}`}
-            anchorEl={el}
-            pos={Number(el.dataset.tourguidePosition)}
+            key={`spotlight-${el.position}`}
+            anchorEl={el.node}
+            pos={el.position}
             animated
             show={show}
             curPos={curPos}
@@ -211,8 +255,8 @@ const Tourguide = (props: TourguideProps) => {
             {Component && (
               <Tooltip
                 show={show}
-                anchorEl={el}
-                pos={Number(el.dataset.tourguidePosition)}
+                anchorEl={el.node}
+                pos={Number(el.position)}
                 curPos={curPos}
                 animated
                 index={index}
