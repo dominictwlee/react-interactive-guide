@@ -1,3 +1,20 @@
+# [4.0.0](https://github.com/dominictwlee/react-interactive-guide/compare/v3.0.0...v4.0.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* remove optional chaining, not supported by microbundle yet ([e933f6b](https://github.com/dominictwlee/react-interactive-guide/commit/e933f6b6b23687f1efe1a2e89978c1a884660567))
+
+
+### Features
+
+* Filter out missing elements ([#2](https://github.com/dominictwlee/react-interactive-guide/issues/2)) ([5954c78](https://github.com/dominictwlee/react-interactive-guide/commit/5954c78eb61c3cc84d782cb67039a654bcc03c76))
+
+
+### BREAKING CHANGES
+
+* update API to not use data attributes
+
 # [3.0.0](https://github.com/dominictwlee/react-interactive-guide/compare/v2.3.1...v3.0.0) (2020-05-06)
 
 
