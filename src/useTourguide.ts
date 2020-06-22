@@ -16,25 +16,28 @@ export default function useTourguide() {
   const [curPos, setCurPos] = useState(0);
   const [status, setStatus] = useState<TourGuideStatus>('idle');
 
-  const handleRef = (position: number) => (node: HTMLElement | null) => {
-    if (
-      node !== null &&
-      typeof position === 'number' &&
-      !node.isEqualNode(allAnchorEls[position]?.node)
-    ) {
-      setAllAnchorEls((prevEls) => {
-        const anchors = [...prevEls];
-        anchors[position] = {
-          node,
-          position,
-        };
-        return anchors;
-      });
-      if (status === 'idle') {
-        setStatus('initializing');
+  const handleRef = useCallback(
+    (position: number) => (node: HTMLElement | null) => {
+      if (
+        node !== null &&
+        typeof position === 'number' &&
+        !node.isEqualNode(allAnchorEls[position]?.node)
+      ) {
+        setAllAnchorEls((prevEls) => {
+          const anchors = [...prevEls];
+          anchors[position] = {
+            node,
+            position,
+          };
+          return anchors;
+        });
+        if (status === 'idle') {
+          setStatus('initializing');
+        }
       }
-    }
-  };
+    },
+    [status, allAnchorEls]
+  );
 
   const getAnchorElProps = useCallback(
     (position: number) => ({
@@ -117,7 +120,7 @@ export default function useTourguide() {
       toggle,
       close,
       status,
-      allAnchorEls.length,
+      allAnchorEls,
     ]
   );
 }

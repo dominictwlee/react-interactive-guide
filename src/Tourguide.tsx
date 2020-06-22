@@ -110,6 +110,22 @@ const Tourguide = (props: TourguideProps) => {
     }
   };
 
+  const filterOutUnused = useCallback(
+    (value?: any) => {
+      return Array.isArray(value)
+        ? value
+            .map((item, index: number) => {
+              if (!!allAnchorEls[index]) {
+                return item;
+              }
+              return undefined;
+            })
+            .filter((item) => !!item)
+        : value;
+    },
+    [allAnchorEls]
+  );
+
   useEffect(() => {
     if (show) {
       document.addEventListener('keydown', handleKeyDown);
@@ -126,32 +142,15 @@ const Tourguide = (props: TourguideProps) => {
     }
   }, [anchorEls.length, precondition, setStatus]);
 
-  const filterOutUnusedTooltips = () => {
-    const filteredComponent = Array.isArray(TooltipComponent)
-      ? TooltipComponent.map((item, index: number) => {
-          if (!!allAnchorEls[index]) {
-            return item;
-          }
-        }).filter((item) => !!item)
-      : TooltipComponent;
+  useEffect(() => {
+    setComponent(
+      filterOutUnused(TooltipComponent) as TourguideProps['tooltip']
+    );
+  }, [TooltipComponent, filterOutUnused]);
 
-    setComponent(filteredComponent as TourguideProps['tooltip']);
-  };
-
-  const filterOutUnusedContent = () => {
-    const filteredContent = allContent
-      ?.map((item, index: number) => {
-        if (!!allAnchorEls[index]) {
-          return item;
-        }
-      })
-      .filter((item) => !!item);
-
-    setContent(filteredContent);
-  };
-
-  useEffect(filterOutUnusedTooltips, [TooltipComponent]);
-  useEffect(filterOutUnusedContent, [allContent]);
+  useEffect(() => {
+    setContent(filterOutUnused(allContent));
+  }, [allContent, filterOutUnused]);
 
   const opacityAnim = useSpring({
     opacity: show ? 1 : 0,
