@@ -1,34 +1,21 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 export type UseTourguideProps = ReturnType<typeof useTourguide>;
 
 type TourGuideStatus = 'idle' | 'initializing' | 'ready';
 
-type TourGuideAnchor = {
-  position: number;
-  node: HTMLElement;
-};
-
 export default function useTourguide() {
-  const [allAnchorEls, setAllAnchorEls] = useState<TourGuideAnchor[]>([]);
-  const [anchorEls, setAnchorEls] = useState<TourGuideAnchor[]>([]);
+  const [anchorEls, setAnchorEls] = useState<HTMLElement[]>([]);
   const [show, setShow] = useState(false);
   const [curPos, setCurPos] = useState(0);
   const [status, setStatus] = useState<TourGuideStatus>('idle');
 
   const handleRef = useCallback(
-    (position: number) => (node: HTMLElement | null) => {
-      if (
-        node !== null &&
-        typeof position === 'number' &&
-        !node.isEqualNode(allAnchorEls[position]?.node)
-      ) {
-        setAllAnchorEls((prevEls) => {
+    (node: HTMLElement | null) => {
+      if (node !== null && node.dataset.tourguidePosition) {
+        setAnchorEls((prevEls) => {
           const anchors = [...prevEls];
-          anchors[position] = {
-            node,
-            position,
-          };
+          anchors[Number(node.dataset.tourguidePosition)] = node;
           return anchors;
         });
         if (status === 'idle') {
@@ -36,12 +23,13 @@ export default function useTourguide() {
         }
       }
     },
-    [status, allAnchorEls]
+    [status]
   );
 
   const getAnchorElProps = useCallback(
     (position: number) => ({
-      ref: handleRef(position),
+      ref: handleRef,
+      'data-tourguide-position': position,
     }),
     [handleRef]
   );
@@ -76,20 +64,6 @@ export default function useTourguide() {
     setStatus('idle');
   }, []);
 
-  const filterMissingAnchors = () => {
-    // removes missing anchors and reassigns positions
-    const newAnchors = allAnchorEls
-      .filter((item) => !!item)
-      .map((item, index) => ({
-        node: item.node,
-        position: index,
-      }));
-
-    setAnchorEls(newAnchors);
-  };
-
-  useEffect(filterMissingAnchors, [allAnchorEls.length]);
-
   return useMemo(
     () => ({
       show,
@@ -106,7 +80,6 @@ export default function useTourguide() {
       close,
       setStatus,
       status,
-      allAnchorEls,
     }),
     [
       anchorEls,
@@ -120,7 +93,6 @@ export default function useTourguide() {
       toggle,
       close,
       status,
-      allAnchorEls,
     ]
   );
 }

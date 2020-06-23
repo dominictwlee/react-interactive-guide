@@ -11,7 +11,7 @@ const Card = styled.div({
   padding: '1rem',
 });
 
-const messages = ['hello1', 'world2', 'hidden', 'hello3'];
+const messages = ['hello1', 'world2', 'hello3'];
 
 const node = document.getElementById('tourguide-root');
 
@@ -37,9 +37,8 @@ function App() {
       >
         <div>
           <h2 {...getAnchorElProps(1)}>Some cool subtitle 2</h2>
-          {false && <h2 {...getAnchorElProps(2)}>Some hidden feature</h2>}
           <Card {...getAnchorElProps(0)}>Some random card with content</Card>
-          <p {...getAnchorElProps(3)}>Some cool content 3</p>
+          <p {...getAnchorElProps(2)}>Some cool content 3</p>
         </div>
         <button onClick={toggle}>show</button>
       </div>
