@@ -1,3 +1,11 @@
+## [4.0.1](https://github.com/dominictwlee/react-interactive-guide/compare/v4.0.0...v4.0.1) (2020-06-23)
+
+
+### Reverts
+
+* "Filter out missing elements ([#2](https://github.com/dominictwlee/react-interactive-guide/issues/2))" ([478bd53](https://github.com/dominictwlee/react-interactive-guide/commit/478bd5357ca0d2e0b27d46f95e5e41f8c5cb4aeb))
+* "remove optional chaining, not supported by microbundle yet" ([64c64de](https://github.com/dominictwlee/react-interactive-guide/commit/64c64de9a8f6d7d81e0ab8616bc0b99133a87b12))
+
 # [4.0.0](https://github.com/dominictwlee/react-interactive-guide/compare/v3.0.0...v4.0.0) (2020-06-22)
 
 
