@@ -21,9 +21,7 @@ export default function useTourguide() {
       if (
         node !== null &&
         typeof position === 'number' &&
-        !node.isEqualNode(
-          allAnchorEls[position] ? allAnchorEls[position].node : null
-        )
+        !node.isEqualNode(allAnchorEls[position]?.node)
       ) {
         setAllAnchorEls((prevEls) => {
           const anchors = [...prevEls];
