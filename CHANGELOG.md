@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/dominictwlee/react-interactive-guide/compare/v4.0.1...v4.0.2) (2020-09-24)
+
+
+### Bug Fixes
+
+* remove extra bracket ([#10](https://github.com/dominictwlee/react-interactive-guide/issues/10)) ([afb8993](https://github.com/dominictwlee/react-interactive-guide/commit/afb89930aa52065ad635a3bf1e1fca9de29ada6d))
+
 ## [4.0.1](https://github.com/dominictwlee/react-interactive-guide/compare/v4.0.0...v4.0.1) (2020-06-23)
 
 
