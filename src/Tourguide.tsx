@@ -190,7 +190,6 @@ const Tourguide = (props: TourguideProps) => {
       >
         <StepIndicator steps={anchorEls.length} curPos={curPos} />
       </Control>
-      }
       <Overlay style={opacityAnim} isIdle={isAnimIdle} show={show}>
         {anchorEls.map((el) => (
           <Spotlight
