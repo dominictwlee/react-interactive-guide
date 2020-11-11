@@ -140,7 +140,7 @@ yarn test
 
 - Website: https://github.com/dominictwlee
 - Github: [@dominictwlee](https://github.com/dominictwlee)
-- LinkedIn: [@https:\/\/www.linkedin.com\/in\/dominictwlee\/](https://linkedin.com/in/https://www.linkedin.com/in/dominictwlee/)
+- LinkedIn: [@dominictwlee](https://www.linkedin.com/in/dominictwlee/)
 
 ## 🤝 Contributing
 
